@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GeoQuest - Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 348px; /* Fixed width */
+            /* height: 579px; Removed fixed height */
+            padding: 20px; /* Adjusted padding */
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: white;
+            margin-top: 30px;
+        }
+
+        .card {
+            /* Removed fixed dimensions and added flex properties */
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+            border-radius: 12px; /* Added border-radius */
+            border: 1px solid var(--Border, #FFF); /* Added border */
+            background: var(--Glass01, rgba(255, 255, 255, 0.05)); /* Added background */
+            height: 608px; /* Added height */
+        }
+
+        .login-menu {
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+            height: 608px; /* Added height */
+        }
+
+        .login-form {
+            display: flex;
+            width: 307px;
+            padding: 9px 0px 6px 0px;
+            justify-content: space-between;
+            align-items: flex-start;
+            align-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        h1 {
+            color: orange;
+        }
+
+        p {
+            font-size: 18px;
+            color: white;
+        }
+
+        .field-heading {
+            text-align: left;
+            margin-top: 10px;
+            color: white;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            background-color: transparent;
+            color: white;
+        }
+
+        button {
+           
+        }
+
+        button:hover {
+            background-color: #ff7f00;
+        }
+
+        /* Media Query for mobile screens */
+        @media screen and (max-width: 480px) {
+            .container {
+                max-width: 90%;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card"> <!-- Card inside container -->
+            <h1>GeoQuest</h1>
+            <p>Login to play</p>
+            <div class="login-form"> <!-- Login form with specified styles -->
+                <div class="field-heading">Email</div>
+                <input type="text" placeholder="Enter Email" required>
+                <div class="field-heading">Password</div>
+                <input type="password" placeholder="Enter Unique ID" required>
+            </div>
+            <br>
+            <button type="submit">Enter</button>
+        </div>
+    </div>
+</body>
+</html>
