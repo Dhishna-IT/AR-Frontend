@@ -1,0 +1,89 @@
+.login-page {
+  border-radius: 18px;
+  background-color: #111;
+  text-align: center;
+  font-size: var(--subheadline-bold-size);
+  color: var(--border02);
+  font-family: var(--subheadline-bold);
+  min-height: 100vh; 
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+}
+
+.card-parent {
+  background: var(--Glass01, rgba(255, 255, 255, 0.05));
+  border-radius: 12px;
+  border: 1px solid var(--Border, #FFF);
+  margin: 10% auto; 
+  max-width: 80%; 
+  font-size: var(--font-size-6xl);
+  font-family: var(--headline-20pxbutton);
+  padding: 5% 0; 
+}
+
+.logo {
+  max-width: 100%;
+  height: auto; 
+}
+
+.login-to-play {
+  font-size: 24px;
+  line-height: 28px;
+  text-align: center;
+}
+
+.forminput {
+  padding: 5% 10%; 
+  
+}
+
+.labelstyle {
+  color: #FFF;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px;
+  
+}
+
+.toaster-and-inputs {
+  margin-top: 5%;
+  margin-bottom: 10%;
+  border-radius: var(--br-xs);
+  background-color: var(--glass01);
+  border: 1px solid var(--border02);
+  box-sizing: border-box;
+  width: 100%; 
+  padding: var(--padding-3xs) var(--padding-109xl) var(--padding-3xs) var(--padding-17xl);
+  color: var(--color-whitesmoke);
+  font-family: var(--headline-20pxbutton);
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.login-button {
+  color: #FFF;
+  text-align: center;
+  font-family: Avenir;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 560;
+  line-height: 28px;
+  border-radius: var(--br-xs);
+  background: linear-gradient(100.3deg,
+    rgba(190, 22, 208, 0.8),
+    rgba(250, 127, 3, 0.8) 0.01%,
+    rgba(233, 10, 23, 0.8) 99.99%,
+    rgba(178, 2, 248, 0.8));
+  backdrop-filter: var(--glasseffect01);
+  border: 1px solid var(--border02);
+  box-sizing: border-box;
+  width: 100%; 
+  padding: var(--padding-xs) var(--padding-13xl);
+  gap: var(--gap-5xs);
+}
