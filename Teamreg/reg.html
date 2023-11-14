@@ -1,0 +1,43 @@
+<!-- BEGIN: abpxx6d04wxr -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration Form</title>
+    </head>
+    <body>
+        <h1>Registration Form</h1>
+        <form id="registration-form">
+            <label for="team-name">Team Name:</label>
+            <input type="text" id="team-name" name="team-name"><br><br>
+            <label for="team-leader-name">Team Leader Name:</label>
+            <input type="text" id="team-leader-name" name="team-leader-name"><br><br>
+            <label for="team-leader-email">Team Leader Email:</label>
+            <input type="email" id="team-leader-email" name="team-leader-email"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>
+<!-- END: abpxx6d04wxr -->
+
+<!-- BEGIN: be15d9bcejpp -->
+<script>
+    const form = document.getElementById('registration-form');
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const teamName = document.getElementById('team-name').value;
+        const teamLeaderName = document.getElementById('team-leader-name').value;
+        const teamLeaderEmail = document.getElementById('team-leader-email').value;
+        const data = { teamName, teamLeaderName, teamLeaderEmail };
+        console.log(data)
+        const response = await fetch('http://localhost:3000/api/v1/user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: data
+        });
+        const result = await response.json();
+        console.log(result);
+    });
+</script>
+<!-- END: be15d9bcejpp -->
