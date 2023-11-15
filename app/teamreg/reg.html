@@ -29,7 +29,7 @@
         const teamLeaderEmail = document.getElementById('team-leader-email').value;
         const data = { teamName, teamLeaderName, teamLeaderEmail };
         console.log(data)
-        const response = await fetch('http://localhost:3000/api/v1/user', {
+        const response = await fetch('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
