@@ -33,6 +33,7 @@ function loginFirebase(e) {
         const {token} = tokenResult
         accessToken = token
         localStorage.setItem('accessToken', accessToken)
+        localStorage.setItem('uid', user.uid)
         
         const headers = {
             Authorization: accessToken,
