@@ -76,7 +76,7 @@
       
           <!-- Set up the AR camera -->
           <a-camera gps-new-camera='gpsMinDistance: 5' maxDistance="20" position="0 0.1 0"></a-camera>
-          <a-entity gltf-model="url(./3dAssets/GiftBox_gltf.gltf)" gps-new-entity-place="latitude: 10.046942288501658; longitude:  76.33519972545754" scale="1 1 1"></a-entity>
+          <a-entity id="gltfModel" gltf-model="" gps-new-entity-place="latitude: 10.046942288501658; longitude:  76.33519972545754" scale="1 1 1"></a-entity>
         </a-scene>
       </div>
       <!-- Content goes here -->
@@ -116,5 +116,9 @@
     </div> 
     <script src="scripts/button.js"></script>
     <script src="scripts/location.js"></script>
+    <script src="scripts/model.js"></script>
+    <script>
+      updateModel()
+    </script>
 </body>
 </html>

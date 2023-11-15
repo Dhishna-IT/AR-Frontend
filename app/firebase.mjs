@@ -40,8 +40,8 @@ function loginFirebase(e) {
             uid: user.uid
         }
         
-        await axios.post('http://localhost:5000/api/v1/user', {name: user.email}, {headers})
         window.location.replace('/home/index.html')
+        await axios.post('http://localhost:5000/api/v1/user', {name: user.email}, {headers})
       })
 
     })

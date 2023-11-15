@@ -32,9 +32,9 @@ Promise.all([locationPromise, userPromise])
     console.log("user level:", user.level);
     if(user.level < locIndex +1)
     {
-    x = loc[locIndex].x1
-    y = loc[locIndex].x2
-    console.log("x y",x,y)
+        x = loc[locIndex].x1
+        y = loc[locIndex].x2
+        console.log("x y", x, y)
     }
 })
 .catch(error => console.error('Error:', error));
