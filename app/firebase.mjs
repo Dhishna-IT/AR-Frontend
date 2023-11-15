@@ -41,7 +41,7 @@ function loginFirebase(e) {
         }
         
         window.location.replace('/home/index.html')
-        await axios.post('http://localhost:5000/api/v1/user', {name: user.email}, {headers})
+        await axios.post('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/user', {name: user.email}, {headers})
       })
 
     })

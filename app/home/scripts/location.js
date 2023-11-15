@@ -5,7 +5,7 @@ let x;
 let y;
 const uid = localStorage.getItem('uid')
 
-const locationPromise = fetch('http://localhost:5000/api/v1/location')
+const locationPromise = fetch('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/location')
 .then(response => response.json())
 .then(data => {
     loc = data.locations;
@@ -17,7 +17,7 @@ const locationPromise = fetch('http://localhost:5000/api/v1/location')
 .catch(error => console.error('Error fetching location:', error));
 
   // Fetch user data
-const userPromise = fetch(`http://localhost:5000/api/v1/user/${uid}`)
+const userPromise = fetch(`https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/user/${uid}`)
 .then(response => response.json())
 .then(data => {
     user = data.result;
