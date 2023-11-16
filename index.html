@@ -1,71 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""></script>    
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
     <title>Document</title>
-</head>
+  </head>
 
-<body data-rsssl=1 class="bg-gray-100">
-
-    <div class="container mx-auto p-4">
-        <div id="map" class="w-full h-64 md:h-96 lg:h-400"></div>
+  <body data-rsssl="1" class="bg-gray-100">
+    <div class="container mx-auto p-4 h-screen">
+      <div id="map" class="w-full h-full"></div>
     </div>
-</body>
+
     <script>
-        const map = L.map('map');
-        // Initializes map
-        map.setView([10.04846, 76.33125], 18);
-        // Sets initial coordinates and zoom level
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
-        // Sets map data source and associates with map
-        let marker, circle, zoomed;
-        const options = {
-            enableHighAccuracy: true,
-            maximumAge: 2000, // Force a fresh location
-            timeout: 5000 // Maximum time to wait for a location
-        };
-        navigator.geolocation.watchPosition(success, error, options);
-        function success(pos) {
-            const lat = pos.coords.latitude;
-            const lng = pos.coords.longitude;
-            const accuracy = pos.coords.accuracy;
-            if (marker) {
-                map.removeLayer(marker);
-                map.removeLayer(circle);
-            }
-            // Removes any existing marker and circle (new ones about to be set)
-            marker = L.marker([lat, lng]).addTo(map);
-            circle = L.circle([lat, lng], { radius: accuracy }).addTo(map);
-            // Adds marker to the map and a circle for accuracy
-            if (!zoomed) {
-                zoomed = map.fitBounds(circle.getBounds());
-            }
-            // Set zoom to boundaries of accuracy circle
-            map.setView([lat, lng]);
-            // Set map focus to current user position
+      const map = L.map("map");
+      // Initializes map
+      map.setView([10.04846, 76.33125], 18);
+      // Sets initial coordinates and zoom level
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution:
+          '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(map);
+      // Sets map data source and associates with map
+      let marker, circle, zoomed;
+      const options = {
+        enableHighAccuracy: true,
+        maximumAge: 2000, // Force a fresh location
+        timeout: 5000, // Maximum time to wait for a location
+      };
+      navigator.geolocation.watchPosition(success, error, options);
+      function success(pos) {
+        const lat = pos.coords.latitude;
+        const lng = pos.coords.longitude;
+        const accuracy = pos.coords.accuracy;
+        if (marker) {
+          map.removeLayer(marker);
+          map.removeLayer(circle);
         }
-        function error(err) {
-            if (err.code === 1) {
-                alert("Please allow geolocation(GPS) access in your mobile device manually");
-            } else {
-                alert("Cannot get current location");
-            }
+        // Removes any existing marker and circle (new ones about to be set)
+        marker = L.marker([lat, lng]).addTo(map);
+        circle = L.circle([lat, lng], { radius: accuracy }).addTo(map);
+        // Adds marker to the map and a circle for accuracy
+        if (!zoomed) {
+          zoomed = map.fitBounds(circle.getBounds());
         }
+        // Set zoom to boundaries of accuracy circle
+        map.setView([lat, lng]);
+        // Set map focus to current user position
+      }
+      function error(err) {
+        if (err.code === 1) {
+          alert(
+            "Please allow geolocation(GPS) access in your mobile device manually"
+          );
+        } else {
+          alert("Cannot get current location");
+        }
+      }
     </script>
-
-
-
+  </body>
 </html>
