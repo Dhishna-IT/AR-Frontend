@@ -52,6 +52,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
+
+
   <body class="!m-0 p-0">
     <div class="flex justify-center items-center min-h-screen">
       <div id="cameraScene">
@@ -99,8 +101,8 @@
           ></a-camera>
           <a-entity
             id="gltfModel"
-            gltf-model=""
-            gps-new-entity-place="latitude: 10.046942288501658; longitude:  76.33519972545754"
+            gltf-model="url(3dAssets/1.glb)"
+            gps-new-entity-place="latitude: 10.049163; longitude:  76.331670"
             scale="1 1 1"
           ></a-entity>
         </a-scene>
@@ -195,10 +197,25 @@
       </div>
     </div>
     <script src="scripts/button.js"></script>
-    <script src="scripts/location.js"></script>
-    <script src="scripts/model.js"></script>
+    <!-- <script src="scripts/location.js"></script> -->
     <script>
-      updateModel();
+      var locIndex = 1;
+      function updateModel() {
+        console.log("updating model called");
+        var model = document.getElementById("gltfModel");
+        model.removeAttribute("gltf-model");
+        const newModelURL = `3dAssets/${locIndex + 1}.glb`;
+        locIndex=locIndex + 1;
+        console.log(`${locIndex + 1}`);
+        model.setAttribute('gltf-model', `${newModelURL}`);
+        console.log("model updated");
+      }
+    
+      const mybutton2 = document.getElementById("mapBtn");
+      mybutton2.addEventListener("click", () => {
+        updateModel();
+      });
     </script>
+    
   </body>
 </html>

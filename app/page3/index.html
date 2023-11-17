@@ -6,23 +6,111 @@
     <title>Page 3</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="h-screen">
-    <div class="h-[10%] mb-0 w-screen " >
+<body class="h-screen bg-black">
+    <div class="h-4 mt-6 relative w-auto rounded-full overflow-hidden">
+        <div class="w-full h-full bg-gray-200 absolute"></div>
+        <div class="h-full bg-orange-500 absolute" style="width:30%"></div>
+    </div>
+
+    <div class="mt-8 p-8 ml-2 mr-2 border-4 border-amber-100 h-auto rounded-lg shadow-md text-white">
+        <h1 class="text-3xl font-bold mb-4 text-orange-500">The Story Title</h1>
+        <div id="paragraph1" class="story-paragraph">
+            <p class="text-lg">At an age when everything revolved around technology, there came a time when mind monsterstook the world by storm. They wreaked havoc among the people, messing with their minds.Among them were children consumed by depression who couldn’t navigate the sea ofloneliness and heal by themselves.</p>
+        </div>
+        <div id="paragraph2" class="story-paragraph hidden">
+            <p class="text-lg">They were trapped in the mindlands with no escape in sight.As time passed, the mind monsters grew stronger as they got more powerful from the negativeemotions and went on a rampage to break more people’s minds.</p>
+        </div>
+        <div id="paragraph3" class="story-paragraph hidden">
+            <p class="text-lg">Some of these children,however, fought their way out of all these through sheer willpower. They were called the mindforgers.So you, The noble mindforgers must now set out on a mission to free those trapped in themindlands and to prevent any more evil that the monsters might be up to.</p>
+        </div>
+        <div id="paragraph4" class="story-paragraph hidden">
+            <p class="text-lg">However, beware thatthe monsters don’t get to you before you defeat them.Even though the path might be riddled with difficulties, you will get stronger the more you huntfor the artefacts which are going to help you defeat the monsters. </p>
+        </div>
+        <div id="paragraph5" class="story-paragraph hidden">
+            <p class="text-lg">These artefacts are to betreasured for the rest of your lives as they would always come in handy when the mindmonsters attack again.Your mission is to restore hope to those trapped in the mindlands and destroy the demons thatcaused it. </p>
+        </div>
+        <div id="paragraph6" class="story-paragraph hidden">
+            <p class="text-lg">Each step makes you stronger and closer to defeating them, and also save thosetrapped in their own minds. Goodbye Forger! </p>
+        </div>
+        <div id="clue" class="story-paragraph hidden">
+            <!-- Clue will be displayed here -->
+        </div>
+        <!-- Add more content as needed -->
+        <button onclick="nextParagraph()" class="mt-4 bg-orange-500 text-black px-4 py-2 rounded">Next</button>
+    </div>
+
+    <div class="h-[10%]  mb-0 w-screen">
         <img src="assets\bg.png" alt="bg" class="w-[100%] h-20 !absolute bottom-0">
         <div class="flex-row justify-between">
-             <div>
-            <img src="assets/camera.png" alt="camera" class="w-11 my-4 absolute bottom-0 left-[4vw]">
+            <div>
+                <img src="assets/camera.png" alt="camera" class="w-11 my-4 absolute bottom-0 left-[4vw]">
+            </div>
+            <div>
+                <img src="assets/map-icon.png" alt="map" class="w-11 absolute bottom-0 my-5 right-[4vw]">
+            </div>
+            <div class="flex justify-center">
+                <img src="assets/float-btn.png" alt="btn" class="w-[4.5rem] my-4 absolute bottom-3">
+            </div>
         </div>
-        <div>
-            <img src="assets/map-icon.png" alt="map" class=" w-11 absolute bottom-0 my-5  @apply right-[4vw]">
-        </div>
-        <div class="flex justify-center">
-            <img src="assets/float-btn.png" alt="btn" class="w-[4.5rem] my-4 absolute bottom-3">
-
-        </div>
-        </div>
-       
     </div>
-   
+
+    <script>
+        let currentParagraph = 1;
+
+        function nextParagraph() {
+            currentParagraph++;
+            const current = document.getElementById(paragraph${currentParagraph});
+            const previous = document.getElementById(paragraph${currentParagraph - 1});
+            
+            if (current) {
+                current.classList.remove('hidden');
+                if (previous) {
+                    previous.classList.add('hidden');
+                }
+            } else {
+                // If no more paragraphs, fetch and display the clue
+                fetchClue();
+            }
+        }
+
+        function fetchClue() {
+            fetch('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/clue')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    // Assuming the data structure is {"success":1,"result":[{"clue":"...", "hint":"..."}]}
+                    if (data.success === 1 && data.result.length > 0) {
+                        const clue = data.result[0].clue;
+                        const hint = data.result[0].hint;
+                      
+                        // Display only the clue, hide other paragraphs
+                        hideParagraphs();
+                        displayClue(clue, hint);
+                    } else {
+                        console.log("Error fetching clue");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching clue:", error);
+                });
+        }
+
+        function hideParagraphs() {
+            // Hide all story paragraphs
+            for (let i = 1; i <= 6; i++) {
+                const paragraph = document.getElementById(paragraph${i});
+                if (paragraph) {
+                    paragraph.classList.add('hidden');
+                }
+            }
+        }
+
+        function displayClue(clue, hint) {
+            // Display the clue in the same div
+            const clueContainer = document.getElementById('clue');
+            clueContainer.innerHTML = <p class="text-lg">Clue: ${clue}</p><p class="text-lg">Hint: ${hint}</p>;
+            clueContainer.classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>
