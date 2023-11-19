@@ -77,8 +77,11 @@
             // Check if getUserMedia is available in the browser
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
               navigator.mediaDevices
-                .getUserMedia({ video: true })
-                .then(function (stream) {
+                .getUserMedia({ video: {facingMode: 'environment'} })
+                .then(function (stream) { 
+                  stream.getTracks().forEach(track => console.log(track))
+                  stream.getTracks()
+                  .forEach(track => track.stop());
                   // Assign the camera stream to the video element
                   video.srcObject = stream;
                   cameraStream = stream;
@@ -171,7 +174,7 @@
     </div>
     <div class="h-[10%] mb-0 w-screen">
       <img src="bg.png" alt="bg" class="w-screen h-20 absolute bottom-0" />
-      <div id="mapBtn">
+      <div>
         <img
           src="map-icon.png"
           alt="camera"
@@ -188,7 +191,7 @@
       <div id="centerBtn">
         <img
           id="centerImg"
-          src="camera.png"
+          src="map-icon.png"
           alt="btn"
           class="w-20 absolute left-1/2 transform -translate-x-1/2 bottom-10 right-0.5 mb-3"
         />

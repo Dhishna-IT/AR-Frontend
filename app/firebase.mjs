@@ -43,7 +43,7 @@ function loginFirebase(e) {
           uid: user.uid,
         };
 
-        window.location.replace("/app/page3/index.html");
+        window.location.replace("/page3/index.html");
         await axios.post(
           "https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/login",
           { name: user.email },
