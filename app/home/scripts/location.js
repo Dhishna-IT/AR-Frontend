@@ -1,5 +1,5 @@
 // Function to calculate distance between two points given their latitude and longitude
-let locIndex1=0;
+let locIndex=0;
 
 function calcDistance(lat1,lon1,lat2,lon2)
 {
@@ -59,22 +59,22 @@ navigator.geolocation.getCurrentPosition(
               // Function to continuously check user proximity
               function checkProximity() {
                   // Check if the user's level is below a certain threshold
-                  if (user.level < locIndex1 + 1) {
+                  if (user.level < locIndex + 1) {
                       const thresholdDistance = 10;
-                      console.log("type",typeof(parseInt(loc[locIndex1].x1))) // Set your desired threshold distance
+                      console.log("type",typeof(parseInt(loc[locIndex].x1))) // Set your desired threshold distance
 
                       const isNearLocation = isUserNearLocation(
                           parseFloat(userLatt),
                           parseFloat(userLong),
-                          parseFloat(loc[locIndex1].x1),
-                          parseFloat(loc[locIndex1].x2),
+                          parseFloat(loc[locIndex].x1),
+                          parseFloat(loc[locIndex].x2),
                           thresholdDistance
                       );
                     console.log(isNearLocation,"islocation near")
                       if (isNearLocation) {
                           // Code to make the model visible
-                          const newLatitude = loc[locIndex1] ? String(loc[locIndex1].x1) : '10.046942288501658';
-                          const newLongitude = loc[locIndex1] ? String(loc[locIndex1].x2) : '76.33519972545754';
+                          const newLatitude = loc[locIndex] ? String(loc[locIndex].x1) : '10.046942288501658';
+                          const newLongitude = loc[locIndex] ? String(loc[locIndex].x2) : '76.33519972545754';
                           const modelElement = document.getElementById('gltfModel');
 
                           if (modelElement) {
