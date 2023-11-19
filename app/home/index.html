@@ -70,38 +70,56 @@
             // Get the video element
             const video = document.getElementById("cameraFeed");
 
-            let cameraStream = null;
-            // Check if getUserMedia is available in the browser
-            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-              navigator.mediaDevices
-                .getUserMedia({ video: true })
-                .then(function (stream) {
-                  // Assign the camera stream to the video element
-                  video.srcObject = stream;
-                  cameraStream = stream;
-                })
-                .catch(function (error) {
-                  console.error("Error accessing camera:", error);
-                });
-            } else {
-              console.error("getUserMedia is not supported in this browser.");
-            }
+              let cameraStream = null;
+
+              setTimeout(function () {
+                              if (cameraStream) {
+                                  const tracks = cameraStream.getTracks();
+                                  tracks.forEach(track => track.stop());
+                                  video.srcObject = null;
+                                  cameraStream = null;
+                                  console.log("kuhfkuehfkefk")
+                              }
+                          }, 5000);
+
+              // Check if getUserMedia is available in the browser
+              if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                  navigator.mediaDevices
+                      .getUserMedia({ video: true })
+                      .then(function (stream) {
+                          // Assign the camera stream to the video element
+                          video.srcObject = stream;
+                          cameraStream = stream;
+
+                          // Automatically stop the camera after 5 seconds
+                      })
+                      .catch(function (error) {
+                          console.error("Error accessing camera:", error);
+                      });
+              } else {
+                  console.error("getUserMedia is not supported in this browser.");
+              }
+
+
+
           </script>
 
           <!-- Set up the AR camera -->
           <a-camera
             gps-new-camera="gpsMinDistance: 5"
-            maxDistance="20"
             position="0 0.1 0"
           ></a-camera>
           <a-entity
             id="gltfModel"
-            gltf-model=""
-            gps-new-entity-place="latitude: 10.046942288501658; longitude:  76.33519972545754"
+            gltf-model="./3dAssets/1.glb"
+            gps-new-entity-place=""
             scale="1 1 1"
+            mycomponent
+            class="z-10 "
           ></a-entity>
         </a-scene>
       </div>
+      <!-- //10.046942288501658, 76.33519972545754 -->
       <!-- Content goes here -->
       <!-- <div id="mapScene" class="bg-white bg-opacity-10 rounded-xl text-white border border-white">
         <div class="py-3 flex items-center px-5">
@@ -124,7 +142,7 @@
 
         </div>
       </div> -->
-      <div class="border-2 w-11/12 bg-[#1E1E1E] text-white rounded-lg">
+      <!-- <div class="border-2 w-11/12 bg-[#1E1E1E] text-white rounded-lg">
         <div class="flex flex-row items-start gap-2 p-5 border-b-2">
           <h1 class="w-3/4">Question 1</h1>
           <div>
@@ -162,7 +180,7 @@
             Option 4
           </button>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="h-[10%] mb-0 w-screen">
       <img src="bg.png" alt="bg" class="w-screen h-20 absolute bottom-0" />
