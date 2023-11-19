@@ -12,10 +12,21 @@
       type="text/javascript"
       src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"
     ></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
     <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
     <style>
       body {
-        background-image: url(tbg.webp);
+        /* background-image: url(tbg.webp); */
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
@@ -54,13 +65,14 @@
 
   <body class="!m-0 p-0">
     <div class="flex justify-center items-center min-h-screen">
-      <div id="cameraScene">
+
+      <!-- Camera Scene  -->
+      <!-- <div id="cameraScene">
         <a-scene
           vr-mode-ui="enabled: false"
           arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false"
           renderer="antialias: true; alpha: true"
-        >
-          <!-- Add a video element to capture the camera feed -->
+          >
           <video
             id="cameraFeed"
             autoplay
@@ -68,7 +80,6 @@
             style="display: none"
           ></video>
 
-          <!-- Use getUserMedia to access the camera -->
           <script>
             // Get the video element
             const video = document.getElementById("cameraFeed");
@@ -94,44 +105,52 @@
             }
           </script>
 
-          <!-- Set up the AR camera -->
           <a-camera
-            gps-new-camera="gpsMinDistance: 5"
-            maxDistance="20"
-            position="0 0.1 0"
+          gps-new-camera="gpsMinDistance: 5"
+          maxDistance="20"
+          position="0 0.1 0"
           ></a-camera>
           <a-entity
-            id="gltfModel"
-            gltf-model=""
-            gps-new-entity-place="latitude: 10.046942288501658; longitude:  76.33519972545754"
-            scale="1 1 1"
+          id="gltfModel"
+          gltf-model=""
+          gps-new-entity-place="latitude: 10.046942288501658; longitude:  76.33519972545754"
+          scale="1 1 1"
           ></a-entity>
         </a-scene>
-      </div>
-      <!-- Content goes here -->
-      <!-- <div id="mapScene" class="bg-white bg-opacity-10 rounded-xl text-white border border-white">
+      </div> -->
+      <!-- Camera Scene  -->
+
+
+
+      <!-- Rewards -->
+      <!-- <div class="bg-white bg-opacity-10 rounded-xl text-white border border-white">
         <div class="py-3 flex items-center px-5">
-            <div class="px-9">
-                Rewards Earned
-            </div>
+          <div class="px-9">
+            Rewards Earned
+          </div>
             <div>
                 <button>X</button>
             </div>
         </div>
         <div class="flex justify-center items-center text-bold border border-white flex flex-col py-6 ">
-            <img src="reward.jpg" class="rounded-full p-2">
-            <h3>Congo u won a food coupon</h3>
+          <img src="reward.jpg" class="rounded-full p-2">
+          <h3>Congo u won a food coupon</h3>
         </div>
         <div class="flex justify-center items-center px-3 py-4">
-            <button
-                class="bg-gradient-to-r from-yellow-500 to-red-500 text-white font-semibold py-1 px-4 rounded-xl border border-white ">
-                Claim
-            </button>
+          <button
+          class="bg-gradient-to-r from-yellow-500 to-red-500 text-white font-semibold py-1 px-4 rounded-xl border border-white ">
+          Claim
+        </button>
 
-        </div>
+      </div>
       </div> -->
+      <!-- Rewards -->
+      
+
+
+      <!-- Question Box  -->
       <div
-        class="border-2 w-11/12 bg-[#1E1E1E] text-white rounded-lg z-10 question-container"
+      class="hidden border-2 w-11/12 bg-[#1E1E1E] text-white rounded-lg z-10 question-container"
       >
         <div class="flex flex-row items-start gap-2 p-5 border-b-2">
           <h1 class="w-3/4">Question 1</h1>
@@ -147,39 +166,51 @@
           </p>
         </div>
         <div
-          class="border-t-2 border flex w-full h-full md:p-5 p-3 py-5 justify-center items-center content-center gap-4 flex-wrap bg-[rgba(255, 255, 255, 0.05)]"
-        >
-          <button
-            class="flex rounded-lg border border-solid border-[#FFF] bg-gradient-to-r from-orange-500 to-red-500 backdrop-blur-[5px] w-36 h-12 p-4 justify-center items-center flex-shrink-0 text-white font-inter font-semibold"
-          >
+            class="border-t-2 border flex w-full h-full md:p-5 p-3 py-5 justify-center items-center content-center gap-4 flex-wrap bg-[rgba(255, 255, 255, 0.05)]"
+            >
+            <button
+              class="flex rounded-lg border border-solid border-[#FFF] bg-gradient-to-r from-orange-500 to-red-500 backdrop-blur-[5px] w-36 h-12 p-4 justify-center items-center flex-shrink-0 text-white font-inter font-semibold"
+            >
             Option 1
           </button>
           <button
-            class="flex rounded-lg border border-solid border-[#FFF] bg-gradient-to-r from-orange-500 to-red-500 backdrop-blur-[5px] w-36 h-12 p-4 justify-center items-center flex-shrink-0 text-white font-inter font-semibold"
+          class="flex rounded-lg border border-solid border-[#FFF] bg-gradient-to-r from-orange-500 to-red-500 backdrop-blur-[5px] w-36 h-12 p-4 justify-center items-center flex-shrink-0 text-white font-inter font-semibold"
           >
-            Option 2
-          </button>
-          <button
+          Option 2
+        </button>
+            <button
             class="flex rounded-lg border border-solid border-[#FFF] bg-gradient-to-r from-orange-500 to-red-500 backdrop-blur-[5px] w-36 h-12 p-4 justify-center items-center flex-shrink-0 text-white font-inter font-semibold"
-          >
+            >
             Option 3
           </button>
           <button
-            class="flex rounded-lg border border-solid border-[#FFF] bg-gradient-to-r from-orange-500 to-red-500 backdrop-blur-[5px] w-36 h-12 p-4 justify-center items-center flex-shrink-0 text-white font-inter font-semibold"
+          class="flex rounded-lg border border-solid border-[#FFF] bg-gradient-to-r from-orange-500 to-red-500 backdrop-blur-[5px] w-36 h-12 p-4 justify-center items-center flex-shrink-0 text-white font-inter font-semibold"
           >
-            Option 4
-          </button>
-        </div>
+          Option 4
+        </button>
       </div>
+      <!-- Question Box  -->
     </div>
-    <div class="h-[10%] mb-0 w-screen">
+  </div>
+
+
+    <!-- Map Scene  -->
+    <div id="mapScene" class="container h-5/6">
+      <div id="map" class="w-full h-full"></div>
+    </div>
+    <!-- Map Scene  -->
+
+
+
+    <!-- Bottom Nav  -->
+    <div id="botNav" class="h-[10%] mb-0 w-screen">
       <img src="bg.png" alt="bg" class="w-screen h-20 absolute bottom-0" />
       <div>
         <img
           src="map-icon.png"
           alt="camera"
           class="w-11 h-11 my-4 mx-5 absolute bottom-0 border-b-20 border-#1E1E1E"
-        />
+          />
       </div>
       <div>
         <img
@@ -197,118 +228,17 @@
         />
       </div>
     </div>
+    <!-- Bottom Nav  -->
+
+
+
     <script src="scripts/button.js"></script>
     <script src="scripts/location.js"></script>
     <script src="scripts/model.js"></script>
+    <script src="scripts/map.js"></script>
     <script>
       updateModel();
     </script>
+
   </body>
 </html>
-<!-- <!DOCTYPE html>
-<html lang="en" class="h-full">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-      crossorigin=""
-    />
-    <script
-      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-      crossorigin=""
-    ></script>
-    <title>Maps</title>
-  </head>
-
-  <body data-rsssl="1" class="bg-gray-100 h-full">
-    <div class="container h-5/6">
-      <div id="map" class="w-full h-full"></div>
-    </div>
-    <div class="h-[10%] mb-0 w-screen z-20">
-      <img
-        src="page2/bg.png"
-        alt="bg"
-        class="w-screen h-20 absolute bottom-0"
-      />
-      <div>
-        <img
-          src="page2/map-icon.png"
-          alt="camera"
-          class="w-11 h-11 my-4 mx-5 absolute bottom-0 border-b-20 border-#1E1E1E"
-        />
-      </div>
-      <div>
-        <img
-          src="page2/float.png"
-          alt="map"
-          class="w-11 h-11 absolute bottom-1 right-0 mr-5 mb-4"
-        />
-      </div>
-      <div>
-        <img
-          src="page2/camera.png"
-          alt="btn"
-          class="w-20 absolute left-1/2 transform -translate-x-1/2 bottom-10 right-0.5 mb-3"
-        />
-      </div>
-    </div>
-
-    <script>
-      const map = L.map("map");
-      // Initializes map
-      map.setView([10.04846, 76.33125], 18);
-      // Sets initial coordinates and zoom level
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 19,
-        attribution:
-          '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      }).addTo(map);
-      // Sets map data source and associates with map
-      let marker, circle, zoomed;
-      const options = {
-        enableHighAccuracy: true,
-        maximumAge: 2000, // Force a fresh location
-        timeout: 5000, // Maximum time to wait for a location
-      };
-      navigator.geolocation.watchPosition(success, error, options);
-      function success(pos) {
-        const lat = pos.coords.latitude;
-        const lng = pos.coords.longitude;
-        const accuracy = pos.coords.accuracy;
-        if (marker) {
-          map.removeLayer(marker);
-          map.removeLayer(circle);
-        }
-        // Removes any existing marker and circle (new ones about to be set)
-        marker = L.marker([lat, lng]).addTo(map);
-        circle = L.circle([lat, lng], { radius: accuracy }).addTo(map);
-        // Adds marker to the map and a circle for accuracy
-        if (!zoomed) {
-          zoomed = map.fitBounds(circle.getBounds());
-        }
-        // Set zoom to boundaries of accuracy circle
-        map.setView([lat, lng]);
-        // Set map focus to current user position
-      }
-      function error(err) {
-        if (err.code === 1) {
-          alert(
-            "Please allow geolocation(GPS) access in your mobile device manually"
-          );
-        } else {
-          alert("Cannot get current location");
-        }
-      }
-    </script>
-  </body>
-</html>
- -->
