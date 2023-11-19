@@ -25,9 +25,7 @@ centerBtn.addEventListener('click', () => {
         mapScene.classList.add('block')
         mapScene.classList.remove('hidden')
 
-        cameraScene.style.display = 'none'
-        cameraScene.classList.add('hidden')
-        cameraScene.classList.remove('block')
+        
 
 
         const video = document.getElementById("cameraFeed");
@@ -42,6 +40,10 @@ centerBtn.addEventListener('click', () => {
                 .forEach(track => track.stop());
                 video.srcObject = null;
                 cameraStream = null;
+                document.getElementsByTagName('video')[1].style.display = 'none'
+                cameraScene.style.display = 'none'
+                cameraScene.classList.add('hidden')
+                cameraScene.classList.remove('block')
             })
             .catch(function (error) {
                 console.error("Error accessing camera:", error);

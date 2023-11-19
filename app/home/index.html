@@ -64,10 +64,10 @@
   </head>
 
   <body class="!m-0 p-0">
-    <div class="flex justify-center items-center min-h-screen">
+    <!-- Camera Scene  -->
+    <div id="cameraScene" class="flex justify-center items-center min-h-screen">
 
-      <!-- Camera Scene  -->
-      <!-- <div id="cameraScene">
+      <div>
         <a-scene
           vr-mode-ui="enabled: false"
           arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false"
@@ -89,10 +89,7 @@
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
               navigator.mediaDevices
                 .getUserMedia({ video: {facingMode: 'environment'} })
-                .then(function (stream) { 
-                  stream.getTracks().forEach(track => console.log(track))
-                  stream.getTracks()
-                  .forEach(track => track.stop());
+                .then(function (stream) {
                   // Assign the camera stream to the video element
                   video.srcObject = stream;
                   cameraStream = stream;
@@ -106,92 +103,93 @@
           </script>
 
           <a-camera
-          gps-new-camera="gpsMinDistance: 5"
-          maxDistance="20"
-          position="0 0.1 0"
+            gps-new-camera="gpsMinDistance: 5"
+            position="0 0.1 0"
           ></a-camera>
           <a-entity
-          id="gltfModel"
-          gltf-model=""
-          gps-new-entity-place="latitude: 10.046942288501658; longitude:  76.33519972545754"
-          scale="1 1 1"
+            id="gltfModel"
+            gltf-model=""
+            gps-new-entity-place=""
+            scale="1 1 1"
+            mycomponent
+            class="z-10 "
           ></a-entity>
         </a-scene>
-      </div> -->
-      <!-- Camera Scene  -->
-
-
-
-      <!-- Rewards -->
-      <!-- <div class="bg-white bg-opacity-10 rounded-xl text-white border border-white">
-        <div class="py-3 flex items-center px-5">
-          <div class="px-9">
-            Rewards Earned
-          </div>
-            <div>
-                <button>X</button>
-            </div>
-        </div>
-        <div class="flex justify-center items-center text-bold border border-white flex flex-col py-6 ">
-          <img src="reward.jpg" class="rounded-full p-2">
-          <h3>Congo u won a food coupon</h3>
-        </div>
-        <div class="flex justify-center items-center px-3 py-4">
-          <button
-          class="bg-gradient-to-r from-yellow-500 to-red-500 text-white font-semibold py-1 px-4 rounded-xl border border-white ">
-          Claim
-        </button>
-
       </div>
-      </div> -->
-      <!-- Rewards -->
+    </div>
+    <!-- Camera Scene  -->
+
+
+
+    <!-- Rewards -->
+    <!-- <div class="bg-white bg-opacity-10 rounded-xl text-white border border-white">
+      <div class="py-3 flex items-center px-5">
+        <div class="px-9">
+          Rewards Earned
+        </div>
+          <div>
+              <button>X</button>
+          </div>
+      </div>
+      <div class="flex justify-center items-center text-bold border border-white flex flex-col py-6 ">
+        <img src="reward.jpg" class="rounded-full p-2">
+        <h3>Congo u won a food coupon</h3>
+      </div>
+      <div class="flex justify-center items-center px-3 py-4">
+        <button
+        class="bg-gradient-to-r from-yellow-500 to-red-500 text-white font-semibold py-1 px-4 rounded-xl border border-white ">
+        Claim
+      </button>
+
+    </div>
+    </div> -->
+    <!-- Rewards -->
       
 
 
-      <!-- Question Box  -->
+    <!-- Question Box  -->
+    <div
+    class="hidden border-2 w-11/12 bg-[#1E1E1E] text-white rounded-lg z-10 question-container"
+    >
+      <div class="flex flex-row items-start gap-2 p-5 border-b-2">
+        <h1 class="w-3/4">Question 1</h1>
+        <div>
+          <img src="close-icon.svg" alt="" />
+        </div>
+      </div>
+      <div class="flex py-6 px-3">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Pellentesque et odio sed est pellentesque gravida sit amet at orci.
+          Phasellus eget iaculis tortor,
+        </p>
+      </div>
       <div
-      class="hidden border-2 w-11/12 bg-[#1E1E1E] text-white rounded-lg z-10 question-container"
-      >
-        <div class="flex flex-row items-start gap-2 p-5 border-b-2">
-          <h1 class="w-3/4">Question 1</h1>
-          <div>
-            <img src="close-icon.svg" alt="" />
-          </div>
-        </div>
-        <div class="flex py-6 px-3">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Pellentesque et odio sed est pellentesque gravida sit amet at orci.
-            Phasellus eget iaculis tortor,
-          </p>
-        </div>
-        <div
-            class="border-t-2 border flex w-full h-full md:p-5 p-3 py-5 justify-center items-center content-center gap-4 flex-wrap bg-[rgba(255, 255, 255, 0.05)]"
-            >
-            <button
-              class="flex rounded-lg border border-solid border-[#FFF] bg-gradient-to-r from-orange-500 to-red-500 backdrop-blur-[5px] w-36 h-12 p-4 justify-center items-center flex-shrink-0 text-white font-inter font-semibold"
-            >
-            Option 1
-          </button>
-          <button
-          class="flex rounded-lg border border-solid border-[#FFF] bg-gradient-to-r from-orange-500 to-red-500 backdrop-blur-[5px] w-36 h-12 p-4 justify-center items-center flex-shrink-0 text-white font-inter font-semibold"
+          class="border-t-2 border flex w-full h-full md:p-5 p-3 py-5 justify-center items-center content-center gap-4 flex-wrap bg-[rgba(255, 255, 255, 0.05)]"
           >
-          Option 2
-        </button>
-            <button
+          <button
             class="flex rounded-lg border border-solid border-[#FFF] bg-gradient-to-r from-orange-500 to-red-500 backdrop-blur-[5px] w-36 h-12 p-4 justify-center items-center flex-shrink-0 text-white font-inter font-semibold"
-            >
-            Option 3
-          </button>
+          >
+          Option 1
+        </button>
+        <button
+        class="flex rounded-lg border border-solid border-[#FFF] bg-gradient-to-r from-orange-500 to-red-500 backdrop-blur-[5px] w-36 h-12 p-4 justify-center items-center flex-shrink-0 text-white font-inter font-semibold"
+        >
+        Option 2
+        </button>
           <button
           class="flex rounded-lg border border-solid border-[#FFF] bg-gradient-to-r from-orange-500 to-red-500 backdrop-blur-[5px] w-36 h-12 p-4 justify-center items-center flex-shrink-0 text-white font-inter font-semibold"
           >
-          Option 4
+          Option 3
+        </button>
+        <button
+        class="flex rounded-lg border border-solid border-[#FFF] bg-gradient-to-r from-orange-500 to-red-500 backdrop-blur-[5px] w-36 h-12 p-4 justify-center items-center flex-shrink-0 text-white font-inter font-semibold"
+        >
+        Option 4
         </button>
       </div>
-      <!-- Question Box  -->
     </div>
-  </div>
+    <!-- Question Box  -->
 
 
     <!-- Map Scene  -->
@@ -233,9 +231,9 @@
 
 
     <script src="scripts/button.js"></script>
+    <script src="scripts/model.js"></script>
     <script src="scripts/location.js"></script>
     <script src="scripts/model.js"></script>
-    <script src="scripts/map.js"></script>
     <script>
       updateModel();
     </script>
