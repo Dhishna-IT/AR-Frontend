@@ -1,5 +1,6 @@
 // Function to calculate distance between two points given their latitude and longitude
 let locIndex=0;
+localStorage.setItem('locIndex', locIndex)
 
 function calcDistance(lat1,lon1,lat2,lon2)
 {

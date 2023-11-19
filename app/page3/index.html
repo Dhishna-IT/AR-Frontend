@@ -15,22 +15,22 @@
     <div class="mt-8 p-8 ml-2 mr-2 border-4 border-amber-100 h-auto rounded-lg shadow-md text-white">
         <h1 class="text-3xl font-bold mb-4 text-orange-500">The Story Title</h1>
         <div id="paragraph1" class="story-paragraph">
-            <p class="text-lg">At an age when everything revolved around technology, there came a time when mind monsterstook the world by storm. They wreaked havoc among the people, messing with their minds.Among them were children consumed by depression who couldn’t navigate the sea ofloneliness and heal by themselves.</p>
+            <p class="text-lg">Objective: The players (participants) are divided into teams, and their mission is to help savethe fictional students from mental health issues by progressing through various stages ofhealing. The teams will need to solve clues and overcome challenges at each location toacquire secret weapons (symbolic representations of mental health coping mechanisms). Thegame culminates in a final showdown where the teams assemble their collected powers tobattle the mental health demons and determine the winner.</p>
         </div>
         <div id="paragraph2" class="story-paragraph hidden">
-            <p class="text-lg">They were trapped in the mindlands with no escape in sight.As time passed, the mind monsters grew stronger as they got more powerful from the negativeemotions and went on a rampage to break more people’s minds.</p>
+            <p class="text-lg">*Gameplay:*At an age when everything revolved around technology, there came a time when mind monsterstook the world by storm. They wreaked havoc among the people, messing with their minds.</p>
         </div>
         <div id="paragraph3" class="story-paragraph hidden">
-            <p class="text-lg">Some of these children,however, fought their way out of all these through sheer willpower. They were called the mindforgers.So you, The noble mindforgers must now set out on a mission to free those trapped in themindlands and to prevent any more evil that the monsters might be up to.</p>
+            <p class="text-lg">Among them were children consumed by depression who couldn’t navigate the sea ofloneliness and heal by themselves. They were trapped in the mindlands with no escape in sight.As time passed, the mind monsters grew stronger as they got more powerful from the negativeemotions and went on a rampage to break more people’s minds. </p>
         </div>
         <div id="paragraph4" class="story-paragraph hidden">
-            <p class="text-lg">However, beware thatthe monsters don’t get to you before you defeat them.Even though the path might be riddled with difficulties, you will get stronger the more you huntfor the artefacts which are going to help you defeat the monsters. </p>
+            <p class="text-lg">Some of these children,however, fought their way out of all these through sheer willpower. They were called the mindforgers.So you, The noble mindforgers must now set out on a mission to free those trapped in themindlands and to prevent any more evil that the monsters might be up to.</p>
         </div>
         <div id="paragraph5" class="story-paragraph hidden">
-            <p class="text-lg">These artefacts are to betreasured for the rest of your lives as they would always come in handy when the mindmonsters attack again.Your mission is to restore hope to those trapped in the mindlands and destroy the demons thatcaused it. </p>
+            <p class="text-lg">However, beware thatthe monsters don’t get to you before you defeat them.Even though the path might be riddled with difficulties, you will get stronger the more you huntfor the artefacts which are going to help you defeat the monsters. </p>
         </div>
         <div id="paragraph6" class="story-paragraph hidden">
-            <p class="text-lg">Each step makes you stronger and closer to defeating them, and also save thosetrapped in their own minds. Goodbye Forger! </p>
+            <p class="text-lg">These artefacts are to betreasured for the rest of your lives as they would always come in handy when the mindmonsters attack again.Your mission is to restore hope to those trapped in the mindlands and destroy the demons thatcaused it. Each step makes you stronger and closer to defeating them, and also save thosetrapped in their own minds. Goodbye Forger! </p>
         </div>
         <div id="clue" class="story-paragraph hidden">
             <!-- Clue will be displayed here -->
@@ -89,12 +89,13 @@
                     console.log(data);
                     // Assuming the data structure is {"success":1,"result":[{"clue":"...", "hint":"..."}]}
                     if (data.success === 1 && data.result.length > 0) {
-                        const clue = data.result[0].clue;
-                        const hint = data.result[0].hint;
+                        let locIndex = localStorage.getItem('locIndex')
+                        locIndex = parseInt(locIndex);
+                        const clue = data.result[locIndex-1].clue;
                       
                         // Display only the clue, hide other paragraphs
                         hideParagraphs();
-                        displayClue(clue, hint);
+                        displayClue(clue);
                     } else {
                         console.log("Error fetching clue");
                     }
@@ -114,11 +115,11 @@
             }
         }
 
-        function displayClue(clue, hint) {
+        function displayClue(clue) {
             // Display the clue in the same div
             // Display the clue in the same div
             const clueContainer = document.getElementById('clue');
-            clueContainer.innerHTML = `<p class="text-lg">Clue: ${clue}</p><p class="text-lg">Hint: ${hint}</p>`;
+            clueContainer.innerHTML = `<p class="text-lg">Clue: ${clue}</p>`;
             clueContainer.classList.remove('hidden');
 
         }
