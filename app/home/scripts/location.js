@@ -1,118 +1,81 @@
+let locIndex = 0;
+let locations = [];
+
 // Function to calculate distance between two points given their latitude and longitude
-let locIndex=0;
+function calcDistance(lat1, lon1, lat2, lon2) {
+  lon1 = lon1 * Math.PI / 180;
+  lon2 = lon2 * Math.PI / 180;
+  lat1 = lat1 * Math.PI / 180;
+  lat2 = lat2 * Math.PI / 180;
 
-function calcDistance(lat1,lon1,lat2,lon2)
-{
-    console.log(lat1,lon1,lat2,lon2,"calc distance")
-    lon1 =  lon1 * Math.PI / 180;
-    lon2 = lon2 * Math.PI / 180;
-    lat1 = lat1 * Math.PI / 180;
-    lat2 = lat2 * Math.PI / 180;
-
-
-    let dlon = lon2 - lon1;
-    let dlat = lat2 - lat1;
-    let a = Math.pow(Math.sin(dlat / 2), 2)
-    + Math.cos(lat1) * Math.cos(lat2)
-    * Math.pow(Math.sin(dlon / 2),2);
-
-    let c = 2 * Math.asin(Math.sqrt(a));
-
-    let r = 6371;
-    distance = c*r;
-    return distance
+  let dlon = lon2 - lon1;
+  let dlat = lat2 - lat1;
+  let a = Math.pow(Math.sin(dlat / 2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(dlon / 2), 2);
+  let c = 2 * Math.asin(Math.sqrt(a));
+  let r = 6371;
+  return c * r;
 }
 
 // Function to check if the user is near a location within a given threshold
 function isUserNearLocation(userLatt, userLong, locationLatt, locationLong, threshold) {
-    console.log(userLatt,userLong,"user location isnear")
   const distance = calcDistance(userLatt, userLong, locationLatt, locationLong);
-  console.log(distance,"distance")
   return distance <= threshold;
 }
 
-// Fetch user's real-time location using Geolocation API
-navigator.geolocation.getCurrentPosition(
-  (position) => {
-      let userLatt = position.coords.latitude;
-      let userLong = position.coords.longitude;
-      console.log(userLatt,userLong,"user location")
+// Function to handle location updates
+function handleLocationUpdate(position) {
+  const userLatt = position.coords.latitude;
+  const userLong = position.coords.longitude;
 
-      // Fetch location data
-      const locationPromise = fetch('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/location')
-          .then(response => response.json());
+  if (locIndex !== -1) {
+    const thresholdDistance = 10; // Set your desired threshold distance
+    const isNearLocation = isUserNearLocation(
+      userLatt,
+      userLong,
+      parseFloat(locations[locIndex].x1),
+      parseFloat(locations[locIndex].x2),
+      thresholdDistance
+    );
 
-      // Fetch user data
-      const uid = localStorage.getItem('uid');
-      const userPromise = fetch(`https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/user/${uid}`)
-          .then(response => response.json());
+    if (isNearLocation) {
+      const newLatitude = locations[locIndex].x1;
+      const newLongitude = locations[locIndex].x2;
+      const modelElement = document.getElementById('gltfModel');
 
-      // Wait for both promises to resolve
-      Promise.all([locationPromise, userPromise])
-          .then(([locationData, userData]) => {
-            // console.log(loc)
-              const loc = locationData.locations;
-              console.log(loc,"location from firebase")
-              const user = userData.result;
-              console.log(user.level,)
-
-              // Function to continuously check user proximity
-              function checkProximity() {
-                  // Check if the user's level is below a certain threshold
-                  if (user.level < locIndex + 1) {
-                      const thresholdDistance = 10;
-                      console.log("type",typeof(parseInt(loc[locIndex].x1))) // Set your desired threshold distance
-
-                      const isNearLocation = isUserNearLocation(
-                          parseFloat(userLatt),
-                          parseFloat(userLong),
-                          parseFloat(loc[locIndex].x1),
-                          parseFloat(loc[locIndex].x2),
-                          thresholdDistance
-                      );
-                    console.log(isNearLocation,"islocation near")
-                      if (isNearLocation) {
-                          // Code to make the model visible
-                          const newLatitude = loc[locIndex] ? String(loc[locIndex].x1) : '10.046942288501658';
-                          const newLongitude = loc[locIndex] ? String(loc[locIndex].x2) : '76.33519972545754';
-                          const modelElement = document.getElementById('gltfModel');
-
-                          if (modelElement) {
-                              modelElement.setAttribute('gps-new-entity-place', `latitude: ${newLatitude}; longitude: ${newLongitude};`);
-                            }
-                            console.log("User is near the location ");
-
-                      } else {
-                          console.log("User is not near the location.");
-                      }
-                  } else {
-                      console.log("User level is not below the required threshold.");
-                  }
-
-                  // Fetch the user's location again and continue checking
-                  navigator.geolocation.getCurrentPosition(
-                      (position) => {
-                          userLatt = position.coords.latitude;
-                          userLong = position.coords.longitude;
-                          checkProximity();
-                      },
-                      (error) => {
-                          console.error('Error getting user location:', error);
-
-                          // Retry after an error with a short delay (adjust as needed)
-                          setTimeout(() => {
-                              checkProximity();
-                          }, 1000); // Retry after 1 second
-                      }
-                  );
-              }
-
-              // Start the continuous proximity check
-              checkProximity();
-          })
-          .catch(error => console.error('Error fetching data:', error));
-  },
-  (error) => {
-      console.error('Error getting user location:', error);
+      if (modelElement) {
+        modelElement.setAttribute('gps-new-entity-place', `latitude: ${newLatitude}; longitude: ${newLongitude};`);
+      }
+      console.log("User is near the location ");
+    } else {
+      console.log("User is not near the location.");
+    }
+  } else {
+    console.log("No more locations to check.");
   }
-);
+}
+
+// Function to handle location errors
+function handleLocationError(error) {
+  console.error('Error getting user location:', error);
+}
+
+// Fetch location data from the API
+fetch('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/location')
+  .then(response => response.json())
+  .then(locationData => {
+    locations = locationData.locations; // Assuming the API response contains locations data
+    console.log(locations, "Location data from the API");
+
+    navigator.geolocation.watchPosition(
+      handleLocationUpdate,
+      handleLocationError,
+      {
+        enableHighAccuracy: true,
+        maximumAge: 3000,
+        timeout: 2000
+      }
+    );
+  })
+  .catch(error => {
+    console.error('Error fetching location data:', error);
+  });
