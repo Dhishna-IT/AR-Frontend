@@ -1,4 +1,10 @@
-let locIndex = 0;
+let locIndex
+if(localStorage.getItem('locIndex') === null || localStorage.getItem('locIndex') === undefined || localStorage.getItem('locIndex') === ""){
+  locIndex = 0
+  localStorage.setItem('locIndex', locIndex)
+}else{
+  locIndex = parseInt(localStorage.getItem('locIndex'))
+}
 
 
 AFRAME.registerComponent('mycomponent', {
@@ -33,14 +39,14 @@ AFRAME.registerComponent('mycomponent', {
     }
   });
 
-  function updateModel() {
+  function updateModel(newLatitude, newLongitude) {
     console.log("updating model called");
     var model = document.getElementById("gltfModel");
     model.removeAttribute("gltf-model");
-    const newModelURL = `3dAssets/${locIndex + 1}.glb`
-    locIndex=locIndex + 1;
+    model.setAttribute('gps-new-entity-place', `latitude: ${newLatitude}; longitude: ${newLongitude};`);
+    const newModelURL = `3dAssets/${locIndex}.glb`
+    console.log(newModelURL)
     localStorage.setItem('locIndex', locIndex)
-    console.log(`${locIndex + 1}`);
     model.setAttribute('gltf-model', `${newModelURL}`);
     console.log("model updated");
   }

@@ -8,38 +8,51 @@ const couponBox = document.getElementById('couponBox');
 // const closeQuestionBox = document.getElementById('closeQuestionBox');
 const closeCouponBox = document.getElementById('closeCouponBox');
 
+const questionText = document.getElementById('questionText')
+const opt1 = document.getElementById('opt1')
+const opt2 = document.getElementById('opt2')
+const opt3 = document.getElementById('opt3')
+const opt4 = document.getElementById('opt4')
+
 let type = 'model'
 
 let questionSet={}
+let questionsSet = []
 
 let coupons = []
 
 couponCodeMap = {
-    '11234': 'kfc',
-    '12345': 'pizzahut',
-    '13456': 'mcdonalds',
-    '14567': 'dominos'
+    '14449': 'food0',
+    '16901': 'food1',
+    '11219': 'food2',
+    '13632': 'food3',
+    '15958': 'food4'
 }
+
+let qid = 0
+localStorage.setItem('qid', qid)
 
 const fetchQuestion = async() => {
     try {
         const res = await axios.get('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/question')
-        console.log(res.data.result)
-        questionSet = res.data.result[locIndex-1]
-        const questionText = document.getElementById('questionText')
-        const opt1 = document.getElementById('opt1')
-        const opt2 = document.getElementById('opt2')
-        const opt3 = document.getElementById('opt3')
-        const opt4 = document.getElementById('opt4')
-    
-        questionText.innerHTML = res.data.result[locIndex-1].q
-        opt1.innerHTML = res.data.result[locIndex-1].a
-        opt2.innerHTML = res.data.result[locIndex-1].b
-        opt3.innerHTML = res.data.result[locIndex-1].c
-        opt4.innerHTML = res.data.result[locIndex-1].d
+        questionsSet = res.data.result
+        qid = parseInt(localStorage.getItem('qid'))
+        if(qid == 8){
+            qid = 0
+        }
+        questionSet = questionsSet[qid]
+        displayQuestions()
     } catch (error) {
         console.log(error)
     }
+}
+
+function displayQuestions(){
+    questionText.innerHTML = questionSet.q
+    opt1.innerHTML = questionSet.a
+    opt2.innerHTML = questionSet.b
+    opt3.innerHTML = questionSet.c
+    opt4.innerHTML = questionSet.d
 }
 
 // closeQuestionBox.addEventListener('click', () => {
@@ -64,7 +77,7 @@ enterCode.addEventListener('click', () => {
     }
 
     if(type == 'model'){
-        if (code === '01234' && locIndex == 1) {
+        if ((code === '05035' && locIndex == 0) || (code === '09889' && locIndex == 1) || (code === '03984' && locIndex == 2) || (code === '02565' && locIndex == 3) || (code === '09015' && locIndex == 4) || (code === '07342' && locIndex == 5)) {
             inputBox.classList.add('hidden')
             inputBox.classList.remove('block');
     
@@ -72,7 +85,6 @@ enterCode.addEventListener('click', () => {
             questionBox.classList.add('block');
 
             fetchQuestion()
-
         }else{
             console.log('wrong code')
         }
@@ -145,11 +157,18 @@ opt1.addEventListener('click', async() => {
                 Authorization: localStorage.getItem('uid')
             }
         })
-        levelIndex += 1
-        localStorage.setItem('levelIndex', locIndex)
+        locIndex = parseInt(localStorage.getItem('locIndex'))
+        locIndex += 1
+        localStorage.setItem('locIndex', locIndex)
         window.location.replace('/page3/index.html')
     }else{
-        window.alert('You clicked the wrong option! Please try again')
+        window.alert('You clicked the wrong option! Please try another question')
+        
+        qid = parseInt(localStorage.getItem('qid'))
+        qid += 1
+        localStorage.setItem('qid', qid)
+        questionSet = questionsSet[qid]
+        displayQuestions()
     }
 }
 )
@@ -163,11 +182,18 @@ opt2.addEventListener('click', async() => {
                 Authorization: localStorage.getItem('uid')
             }
         })
-        levelIndex += 1
-        localStorage.setItem('levelIndex', locIndex)
+        locIndex = parseInt(localStorage.getItem('locIndex'))
+        locIndex += 1
+        localStorage.setItem('locIndex', locIndex)
         window.location.replace('/page3/index.html')
     }else{
-        window.alert('You clicked the wrong option! Please try again')
+        window.alert('You clicked the wrong option! Please try another question')
+        
+        parseInt(localStorage.getItem('qid'))
+        qid += 1
+        localStorage.setItem('qid', qid)
+        questionSet = questionsSet[qid]
+        displayQuestions()
     }
 }
 )
@@ -181,11 +207,18 @@ opt3.addEventListener('click', async() => {
                 Authorization: localStorage.getItem('uid')
             }
         })
-        levelIndex += 1
-        localStorage.setItem('levelIndex', locIndex)
+        locIndex = parseInt(localStorage.getItem('locIndex'))
+        locIndex += 1
+        localStorage.setItem('locIndex', locIndex)
         window.location.replace('/page3/index.html')
     }else{
-        window.alert('You clicked the wrong option! Please try again')
+        window.alert('You clicked the wrong option! Please try another question')
+        
+        parseInt(localStorage.getItem('qid'))
+        qid += 1
+        localStorage.setItem('qid', qid)
+        questionSet = questionsSet[qid]
+        displayQuestions()
     }
 }
 )
@@ -199,11 +232,18 @@ opt4.addEventListener('click', async() => {
                 Authorization: localStorage.getItem('uid')
             }
         })
-        levelIndex += 1
-        localStorage.setItem('levelIndex', locIndex)
+        locIndex = parseInt(localStorage.getItem('locIndex'))
+        locIndex += 1
+        localStorage.setItem('locIndex', locIndex)
         window.location.replace('/page3/index.html')
     }else{
-        window.alert('You clicked the wrong option! Please try again')
+        window.alert('You clicked the wrong option! Please try another question')
+        
+        parseInt(localStorage.getItem('qid'))
+        qid += 1
+        localStorage.setItem('qid', qid)
+        questionSet = questionsSet[qid]
+        displayQuestions()
     }
 }
 )
