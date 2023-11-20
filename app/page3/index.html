@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page 3</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.1/axios.min.js" integrity="sha512-m9S8W3a9hhBHPFAbEIaG7J9P92dzcAWwM42VvJp5n1/M599ldK6Z2st2SfJGsX0QR4LfCVr681vyU5vW8d218w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </head>
 <body class="h-screen bg-black">
     <div class="h-4 mt-6 relative w-auto rounded-full overflow-hidden">
@@ -56,6 +58,14 @@
     
 
     <script>
+        let locIndex
+        if(localStorage.getItem('locIndex') === null || localStorage.getItem('locIndex') === undefined || localStorage.getItem('locIndex') === ""){
+            locIndex = 0
+            localStorage.setItem('locIndex', locIndex)
+        }else{
+            locIndex = parseInt(localStorage.getItem('locIndex'))
+        }
+
         if (localStorage.getItem('story') === 'completed') {
             // If story is completed, fetch and display the clue
             fetchClue();
@@ -83,22 +93,22 @@
         }
 
         function fetchClue() {
-            fetch('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/clue')
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
+            axios.get('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/clue')
+                .then(res => {
+                    console.log(res)
                     // Assuming the data structure is {"success":1,"result":[{"clue":"...", "hint":"..."}]}
-                    if (data.success === 1 && data.result.length > 0) {
+                    if (res.data.success === 1) {
+
                         let locIndex = localStorage.getItem('locIndex')
                         locIndex = parseInt(locIndex);
-                        const clue = data.result[locIndex-1].clue;
+                        const clue = res.data.result[locIndex].clue;
 
                       
                         // Display only the clue, hide other paragraphs
                         hideParagraphs();
                         displayClue(clue);
-                    } else {
-                        console.log("Error fetching clue");
+                    }else{
+                        console.log(data.success)
                     }
                 })
                 .catch(error => {

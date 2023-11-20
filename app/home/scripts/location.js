@@ -1,8 +1,7 @@
 let locations = []; 
 let setModel = false 
-// let user;
-let locIndex1 =0 ;
-// let user 
+
+locIndex = parseInt(localStorage.getItem('locIndex'))
 
 console.log("the user id is",localStorage.getItem("uid"))
 
@@ -39,29 +38,32 @@ function handleLocationUpdate(position) {
   const userLong = position.coords.longitude
 //   console.log("the user location",userLatt,userLong);
 
-  if (locIndex1 !== -1) {
+  if (locIndex !== -1) {
     const thresholdDistance = 1000; // Set your desired threshold distance
     const isNearLocation = isUserNearLocation(
       userLatt,
       userLong,
-      parseFloat(locations[locIndex1].x1),
-      parseFloat(locations[locIndex1].x2),
+      parseFloat(locations[locIndex].x1),
+      parseFloat(locations[locIndex].x2),
       thresholdDistance
     );
 
-    // console.log(typeof(locations[locIndex1].x1),typeof(locations[locIndex1].x2),"tpyeee emf lsngjkn ")
+    // console.log(typeof(locations[locIndex].x1),typeof(locations[locIndex].x2),"tpyeee emf lsngjkn ")
 
     if (isNearLocation) {
-      const newLatitude = parseFloat(locations[locIndex1].x1);
-      const newLongitude = parseFloat(locations[locIndex1].x2);
-      console.log("the new location",newLatitude,newLongitude)
+      const newLatitude = parseFloat(locations[locIndex].x1);
+      const newLongitude = parseFloat(locations[locIndex].x2);
       const modelElement = document.getElementById('gltfModel');
     
-    if(!setModel){
+    if(localStorage.getItem(`model${locIndex}`) !== "true" || !setModel){
         if (modelElement) {
-          modelElement.setAttribute('gps-new-entity-place', `latitude: ${newLatitude}; longitude: ${newLongitude};`);
+          updateModel(newLatitude, newLongitude);
+          const inputBox = document.getElementById('inputBox')
+          inputBox.classList.remove('hidden')
+          inputBox.classList.add('block')
           console.log("the model is set");
-          setModel = true;
+          setModel = true
+          localStorage.setItem(`model${locIndex}`, "true")
         }
     }
       console.log("User is near the location ");
@@ -72,7 +74,6 @@ function handleLocationUpdate(position) {
         modelElement.setAttribute('gps-new-entity-place', `null`);
         console.log("the model is removed set");
       }
-
     }
   } else {
     console.log("No more locations to check.");
