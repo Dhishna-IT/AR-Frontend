@@ -1,3 +1,5 @@
+let locIndex = 0;
+
 
 AFRAME.registerComponent('mycomponent', {
     init: function () {
