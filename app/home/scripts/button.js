@@ -9,9 +9,9 @@ storyBtn.addEventListener('click', () => {
 })
 
 centerBtn.addEventListener('click', () => {
-    if(centerImg.src.includes('camera.png')){
+    if(centerImg.src.includes('camera-float.png')){
         console.log('cameraBtn')
-        centerImg.src = 'map-icon.png'
+        centerImg.src = '../assets/map-float.png'
 
         cameraScene.style.display = 'block'
         cameraScene.classList.add('block')
@@ -23,7 +23,7 @@ centerBtn.addEventListener('click', () => {
     
     }else{
         console.log('mapBtn')
-        centerImg.src = 'camera.png'
+        centerImg.src = '../assets/camera-float.png'
         
         mapScene.style.display = 'block'
         mapScene.classList.add('block')
