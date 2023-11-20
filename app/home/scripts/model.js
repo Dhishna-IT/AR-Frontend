@@ -39,6 +39,7 @@ AFRAME.registerComponent('mycomponent', {
     model.removeAttribute("gltf-model");
     const newModelURL = `3dAssets/${locIndex + 1}.glb`
     locIndex=locIndex + 1;
+    localStorage.setItem('locIndex', locIndex)
     console.log(`${locIndex + 1}`);
     model.setAttribute('gltf-model', `${newModelURL}`);
     console.log("model updated");
