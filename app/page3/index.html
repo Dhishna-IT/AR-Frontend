@@ -36,7 +36,7 @@
             <!-- Clue will be displayed here -->
         </div>
         <!-- Add more content as needed -->
-        <button onclick="nextParagraph()" class="mt-4 bg-orange-500 text-black px-4 py-2 rounded">Next</button>
+        <button onclick="nextParagraph()" class="mt-4 bg-orange-500 text-black px-4 py-2 rounded" id="next">Next</button>
     </div>
 
     <div class="h-[10%]  mb-0 w-screen">
@@ -92,6 +92,7 @@
                         let locIndex = localStorage.getItem('locIndex')
                         locIndex = parseInt(locIndex);
                         const clue = data.result[locIndex-1].clue;
+
                       
                         // Display only the clue, hide other paragraphs
                         hideParagraphs();
@@ -121,6 +122,9 @@
             const clueContainer = document.getElementById('clue');
             clueContainer.innerHTML = `<p class="text-lg">Clue: ${clue}</p>`;
             clueContainer.classList.remove('hidden');
+            const next = document.getElementById('next');
+            next.classList.add('hidden');
+
 
         }
     </script>

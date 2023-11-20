@@ -1,7 +1,7 @@
 let locations = []; 
 let setModel = false 
 // let user;
-let locIndex1 =1 ;
+let locIndex1 =0 ;
 // let user 
 
 console.log("the user id is",localStorage.getItem("uid"))

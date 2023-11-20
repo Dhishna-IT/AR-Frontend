@@ -1,24 +1,50 @@
-<!-- BEGIN: abpxx6d04wxr -->
+<!-- Add the following classes to your HTML elements for styling -->
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Registration Form</title>
-    </head>
-    <body>
-        <h1>Registration Form</h1>
-        <form id="registration-form">
-            <label for="team-name">Team Name:</label>
-            <input type="text" id="team-name" name="team-name"><br><br>
-            <label for="team-leader-name">Team Leader Name:</label>
-            <input type="text" id="team-leader-name" name="team-leader-name"><br><br>
-            <label for="team-leader-email">Team Leader Email:</label>
-            <input type="email" id="team-leader-email" name="team-leader-email"><br><br>
-            <input type="submit" value="Submit">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <!-- Add Tailwind CSS styles from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.1/axios.min.js" integrity="sha512-m9S8W3a9hhBHPFAbEIaG7J9P92dzcAWwM42VvJp5n1/M599ldK6Z2st2SfJGsX0QR4LfCVr681vyU5vW8d218w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="module" src="firebase.mjs"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+    <div class="bg-white p-8 rounded shadow-md w-96">
+        <h1 class="text-2xl font-semibold mb-6">Registration Form</h1>
+
+        <form id="registration-form" class="space-y-4">
+            <div>
+                <label for="team-name" class="block text-sm font-medium text-gray-600">Team Name:</label>
+                <input type="text" id="team-name" name="team-name" class="mt-1 p-2 border rounded w-full">
+            </div>
+
+            <div>
+                <label for="team-leader-name" class="block text-sm font-medium text-gray-600">Team Leader Name:</label>
+                <input type="text" id="team-leader-name" name="team-leader-name" class="mt-1 p-2 border rounded w-full">
+            </div>
+
+            <div>
+                <label for="team-leader-email" class="block text-sm font-medium text-gray-600">Team Leader Email:</label>
+                <input type="email" id="team-leader-email" name="team-leader-email" class="mt-1 p-2 border rounded w-full">
+            </div>
+
+            <div>
+                <label for="team-leader-phone" class="block text-sm font-medium text-gray-600">Team Leader Phone:</label>
+                <input type="number" id="team-leader-phone" name="team-leader-phone" class="mt-1 p-2 border rounded w-full">
+            </div>
+
+            <div class="mt-4">
+                <input type="submit" value="Submit" class="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer">
+            </div>
         </form>
-    </body>
-</html>
+    </div>
 <!-- END: abpxx6d04wxr -->
 
+<!-- BEGIN: be15d9bcejpp -->
+<!-- BEGIN: be15d9bcejpp -->
 <!-- BEGIN: be15d9bcejpp -->
 <script>
     const form = document.getElementById('registration-form');
@@ -27,17 +53,35 @@
         const teamName = document.getElementById('team-name').value;
         const teamLeaderName = document.getElementById('team-leader-name').value;
         const teamLeaderEmail = document.getElementById('team-leader-email').value;
-        const data = { teamName, teamLeaderName, teamLeaderEmail };
+        const teamLeaderPhone = document.getElementById('team-leader-phone').value;
+        const data = { teamName, teamLeaderName, teamLeaderEmail,teamLeaderPhone };
         console.log(data)
-        const response = await fetch('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/user', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: data
-        });
-        const result = await response.json();
-        console.log(result);
+
+        try {
+            // Modify the fetch URL to point to the Firebase Authentication API for user registration
+            const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBxBYM2_aWWrjVfcBsfVjFxo8D7RAQ2e08', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: teamLeaderEmail,
+                    password: teamLeaderPhone, // Set a default password or generate one dynamically
+                    returnSecureToken: true
+                })
+            });
+
+            const result = await response.json();
+            console.log(result);
+
+            // Handle successful registration, e.g., store user data in Firebase Firestore or Realtime Database
+        } catch (error) {
+            console.error('Error registering user:', error);
+        }
     });
 </script>
+<!-- END: be15d9bcejpp -->
+
+<!-- END: be15d9bcejpp -->
+
 <!-- END: be15d9bcejpp -->
