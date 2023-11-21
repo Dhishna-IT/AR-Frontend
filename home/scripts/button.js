@@ -2,6 +2,7 @@ const centerBtn = document.getElementById('centerBtn')
 const cameraScene = document.getElementById('cameraScene')
 const mapScene = document.getElementById('mapScene')
 const storyBtn = document.getElementById('storyBtn')
+const openInput = document.getElementById('openInput')
 const captureBtn = document.getElementById('captureBtn')
 const centerImg = document.getElementById('centerImg')
 
@@ -62,4 +63,9 @@ centerBtn.addEventListener('click', () => {
 captureBtn.addEventListener('click', () => {
     captureBtn.classList.add('hidden')
     captureBtn.classList.remove('block')
+})
+
+openInput.addEventListener('click', () => {
+    inputBox.classList.add('block')
+    inputBox.classList.remove('hidden')
 })

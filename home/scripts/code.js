@@ -85,7 +85,7 @@ enterCode.addEventListener('click', () => {
 
             displayQuestion()
         }else{
-            console.log('wrong code')
+            window.alert('Wrong code! Please try again')
         }
     }
 
@@ -93,7 +93,7 @@ enterCode.addEventListener('click', () => {
         axios.get('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/coupon')
             .then(res => {
                 coupons = res.data.result
-                if (code === '11234' && coupons.includes(couponCodeMap[code])) {
+                if ((code === '14449' || code == '16901' || code == '11219' || code == '13632' || code == '15958' || code == '17826' || '165123' || '19673' || '16882' || '17395') && coupons.includes(couponCodeMap[code])) {
                     inputBox.classList.add('hidden')
                     inputBox.classList.remove('block');
                     
@@ -105,42 +105,8 @@ enterCode.addEventListener('click', () => {
                             Authorization: localStorage.getItem('uid')
                         }
                     })
-                }else if(code === '12345' && coupons.includes(couponCodeMap[code])){
-                    inputBox.classList.add('hidden')
-                    inputBox.classList.remove('block');
-                    
-                    couponBox.classList.remove('hidden')
-                    couponBox.classList.add('block')
-
-                    axios.delete(`https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/coupon/${couponCodeMap[code]}`, {
-                        headers:{
-                            Authorization: localStorage.getItem('uid')
-                        }
-                    })
-                }else if(code === '13456' && coupons.includes(couponCodeMap[code])){
-                    inputBox.classList.add('hidden')
-                    inputBox.classList.remove('block');
-                    
-                    couponBox.classList.remove('hidden')
-                    couponBox.classList.add('block')
-
-                    axios.delete(`https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/coupon/${couponCodeMap[code]}`, {
-                        headers:{
-                            Authorization: localStorage.getItem('uid')
-                        }
-                    })
-                }else if(code === '14567' && coupons.includes(couponCodeMap[code])){
-                    inputBox.classList.add('hidden')
-                    inputBox.classList.remove('block');
-                    
-                    couponBox.classList.remove('hidden')
-                    couponBox.classList.add('block')
-
-                    axios.delete(`https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/coupon/${couponCodeMap[code]}`, {
-                        headers:{
-                            Authorization: localStorage.getItem('uid')
-                        }
-                    })
+                }else{
+                    window.alert('Wrong coupon code! Please try again')
                 }
             })
     }
