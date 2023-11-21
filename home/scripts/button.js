@@ -2,6 +2,7 @@ const centerBtn = document.getElementById('centerBtn')
 const cameraScene = document.getElementById('cameraScene')
 const mapScene = document.getElementById('mapScene')
 const storyBtn = document.getElementById('storyBtn')
+const captureBtn = document.getElementById('captureBtn')
 const centerImg = document.getElementById('centerImg')
 
 storyBtn.addEventListener('click', () => {
@@ -56,4 +57,9 @@ centerBtn.addEventListener('click', () => {
             console.error("getUserMedia is not supported in this browser.");
         }
     }
+})
+
+captureBtn.addEventListener('click', () => {
+    captureBtn.classList.add('hidden')
+    captureBtn.classList.remove('block')
 })

@@ -29,25 +29,24 @@ couponCodeMap = {
     '15958': 'food4'
 }
 
-let qid = 0
-localStorage.setItem('qid', qid)
-
-const fetchQuestion = async() => {
+const fetchQuestions = async() => {
     try {
         const res = await axios.get('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/question')
         questionsSet = res.data.result
-        qid = parseInt(localStorage.getItem('qid'))
-        if(qid == 8){
-            qid = 0
-        }
-        questionSet = questionsSet[qid]
-        displayQuestions()
     } catch (error) {
         console.log(error)
     }
 }
 
-function displayQuestions(){
+fetchQuestions()
+
+function displayQuestion(){
+    qid = parseInt(localStorage.getItem('qid'))
+    if(qid == 30){
+        qid = 0
+    }
+    questionSet = questionsSet[qid]
+
     questionText.innerHTML = questionSet.q
     opt1.innerHTML = questionSet.a
     opt2.innerHTML = questionSet.b
@@ -84,7 +83,7 @@ enterCode.addEventListener('click', () => {
             questionBox.classList.remove('hidden');
             questionBox.classList.add('block');
 
-            fetchQuestion()
+            displayQuestion()
         }else{
             console.log('wrong code')
         }
@@ -101,7 +100,7 @@ enterCode.addEventListener('click', () => {
                     couponBox.classList.remove('hidden')
                     couponBox.classList.add('block')
 
-                    axios.delete(`http://localhost:5000/api/v1/coupon/${couponCodeMap[code]}`, {
+                    axios.delete(`https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/coupon/${couponCodeMap[code]}`, {
                         headers:{
                             Authorization: localStorage.getItem('uid')
                         }
@@ -113,7 +112,7 @@ enterCode.addEventListener('click', () => {
                     couponBox.classList.remove('hidden')
                     couponBox.classList.add('block')
 
-                    axios.delete(`http://localhost:5000/api/v1/coupon/${couponCodeMap[code]}`, {
+                    axios.delete(`https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/coupon/${couponCodeMap[code]}`, {
                         headers:{
                             Authorization: localStorage.getItem('uid')
                         }
@@ -125,7 +124,7 @@ enterCode.addEventListener('click', () => {
                     couponBox.classList.remove('hidden')
                     couponBox.classList.add('block')
 
-                    axios.delete(`http://localhost:5000/api/v1/coupon/${couponCodeMap[code]}`, {
+                    axios.delete(`https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/coupon/${couponCodeMap[code]}`, {
                         headers:{
                             Authorization: localStorage.getItem('uid')
                         }
@@ -137,7 +136,7 @@ enterCode.addEventListener('click', () => {
                     couponBox.classList.remove('hidden')
                     couponBox.classList.add('block')
 
-                    axios.delete(`http://localhost:5000/api/v1/coupon/${couponCodeMap[code]}`, {
+                    axios.delete(`https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/coupon/${couponCodeMap[code]}`, {
                         headers:{
                             Authorization: localStorage.getItem('uid')
                         }
@@ -164,12 +163,12 @@ opt1.addEventListener('click', async() => {
     }else{
         window.alert('You clicked the wrong option! Please try another question')
         
-        qid = parseInt(localStorage.getItem('qid'))
-        qid += 1
-        localStorage.setItem('qid', qid)
-        questionSet = questionsSet[qid]
-        displayQuestions()
+        displayQuestion()
     }
+    qid = parseInt(localStorage.getItem('qid'))
+    qid += 1
+    localStorage.setItem('qid', qid)
+    questionSet = questionsSet[qid]
 }
 )
 
@@ -189,12 +188,12 @@ opt2.addEventListener('click', async() => {
     }else{
         window.alert('You clicked the wrong option! Please try another question')
         
-        parseInt(localStorage.getItem('qid'))
-        qid += 1
-        localStorage.setItem('qid', qid)
-        questionSet = questionsSet[qid]
-        displayQuestions()
+        displayQuestion()
     }
+    parseInt(localStorage.getItem('qid'))
+    qid += 1
+    localStorage.setItem('qid', qid)
+    questionSet = questionsSet[qid]
 }
 )
 
@@ -214,12 +213,12 @@ opt3.addEventListener('click', async() => {
     }else{
         window.alert('You clicked the wrong option! Please try another question')
         
-        parseInt(localStorage.getItem('qid'))
-        qid += 1
-        localStorage.setItem('qid', qid)
-        questionSet = questionsSet[qid]
-        displayQuestions()
+        displayQuestion()
     }
+    parseInt(localStorage.getItem('qid'))
+    qid += 1
+    localStorage.setItem('qid', qid)
+    questionSet = questionsSet[qid]
 }
 )
 
@@ -239,11 +238,11 @@ opt4.addEventListener('click', async() => {
     }else{
         window.alert('You clicked the wrong option! Please try another question')
         
-        parseInt(localStorage.getItem('qid'))
-        qid += 1
-        localStorage.setItem('qid', qid)
-        questionSet = questionsSet[qid]
-        displayQuestions()
+        displayQuestion()
     }
+    parseInt(localStorage.getItem('qid'))
+    qid += 1
+    localStorage.setItem('qid', qid)
+    questionSet = questionsSet[qid]
 }
 )

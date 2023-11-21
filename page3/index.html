@@ -6,7 +6,7 @@
     <title>Page 3</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.1/axios.min.js" integrity="sha512-m9S8W3a9hhBHPFAbEIaG7J9P92dzcAWwM42VvJp5n1/M599ldK6Z2st2SfJGsX0QR4LfCVr681vyU5vW8d218w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    <script src="../../scripts/init.js"></script>
 </head>
 <body class="h-screen bg-black">
     <div class="h-4 mt-6 relative w-auto rounded-full overflow-hidden">
@@ -15,7 +15,7 @@
     </div>
 
     <div class="mt-8 p-8 ml-2 mr-2 border-4 border-amber-100 h-auto rounded-lg shadow-md text-white">
-        <h1 class="text-3xl font-bold mb-4 text-orange-500">The Story Title</h1>
+        <h1 id="heading" class="text-3xl font-bold mb-4 text-orange-500">The Story Title</h1>
         <div id="paragraph1" class="story-paragraph hidden">
             <p class="text-lg">Objective: The players (participants) are divided into teams, and their mission is to help savethe fictional students from mental health issues by progressing through various stages ofhealing. The teams will need to solve clues and overcome challenges at each location toacquire secret weapons (symbolic representations of mental health coping mechanisms). Thegame culminates in a final showdown where the teams assemble their collected powers tobattle the mental health demons and determine the winner.</p>
         </div>
@@ -58,13 +58,6 @@
     
 
     <script>
-        let locIndex
-        if(localStorage.getItem('locIndex') === null || localStorage.getItem('locIndex') === undefined || localStorage.getItem('locIndex') === ""){
-            locIndex = 0
-            localStorage.setItem('locIndex', locIndex)
-        }else{
-            locIndex = parseInt(localStorage.getItem('locIndex'))
-        }
 
         if (localStorage.getItem('story') === 'completed') {
             // If story is completed, fetch and display the clue
@@ -93,6 +86,7 @@
         }
 
         function fetchClue() {
+            document.getElementById('heading').innerText = 'Clue'
             axios.get('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/clue')
                 .then(res => {
                     console.log(res)
@@ -130,7 +124,11 @@
             // Display the clue in the same div
             // Display the clue in the same div
             const clueContainer = document.getElementById('clue');
-            clueContainer.innerHTML = `<p class="text-lg">Clue: ${clue}</p>`;
+            if(clue.includes('iV')){
+                clueContainer.innerHTML = `<img src='data:image/jpeg;base64,${clue}'' />`
+            }else{
+                clueContainer.innerHTML = `<p class="text-lg">Clue: ${clue}</p>`;
+            }
             clueContainer.classList.remove('hidden');
             const next = document.getElementById('next');
             next.classList.add('hidden');

@@ -43,29 +43,34 @@ function handleLocationUpdate(position) {
     const isNearLocation = isUserNearLocation(
       userLatt,
       userLong,
-      parseFloat(locations[locIndex].x1),
-      parseFloat(locations[locIndex].x2),
+      10.046942288501658,
+      76.3351997254754,
       thresholdDistance
     );
 
     // console.log(typeof(locations[locIndex].x1),typeof(locations[locIndex].x2),"tpyeee emf lsngjkn ")
-
+    // 10.046942288501658,76.3351997254754
     if (isNearLocation) {
-      const newLatitude = parseFloat(locations[locIndex].x1);
-      const newLongitude = parseFloat(locations[locIndex].x2);
+      const newLatitude = 10.046942288501658;
+      const newLongitude = 76.3351997254754;
       const modelElement = document.getElementById('gltfModel');
-    
-    if(localStorage.getItem(`model${locIndex}`) !== "true" || !setModel){
-        if (modelElement) {
-          updateModel(newLatitude, newLongitude);
-          const inputBox = document.getElementById('inputBox')
-          inputBox.classList.remove('hidden')
-          inputBox.classList.add('block')
-          console.log("the model is set");
-          setModel = true
-          localStorage.setItem(`model${locIndex}`, "true")
-        }
-    }
+      if(locIndex == 6){
+        const captureBtn = document.getElementById('captureBtn')
+        captureBtn.classList.remove('hidden')
+        captureBtn.classList.add('block')
+        return
+      }
+      if(localStorage.getItem(`model${locIndex}`) !== "true" || !setModel){
+          if (modelElement) {
+            updateModel(newLatitude, newLongitude);
+            const inputBox = document.getElementById('inputBox')
+            inputBox.classList.remove('hidden')
+            inputBox.classList.add('block')
+            console.log("the model is set");
+            setModel = true
+            localStorage.setItem(`model${locIndex}`, "true")
+          }
+      }
       console.log("User is near the location ");
     } else {
       console.log("User is not near the location.");

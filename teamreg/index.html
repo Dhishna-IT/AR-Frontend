@@ -32,8 +32,8 @@
             </div>
 
             <div>
-                <label for="team-leader-phone" class="block text-sm font-medium text-gray-600">Team Leader Phone:</label>
-                <input type="number" id="team-leader-phone" name="team-leader-phone" class="mt-1 p-2 border rounded w-full">
+                <label for="team-pass" class="block text-sm font-medium text-gray-600">Team Password:</label>
+                <input type="number" id="team-pass" name="team-pass" class="mt-1 p-2 border rounded w-full">
             </div>
 
             <div class="mt-4">
@@ -53,8 +53,8 @@
         const teamName = document.getElementById('team-name').value;
         const teamLeaderName = document.getElementById('team-leader-name').value;
         const teamLeaderEmail = document.getElementById('team-leader-email').value;
-        const teamLeaderPhone = document.getElementById('team-leader-phone').value;
-        const data = { teamName, teamLeaderName, teamLeaderEmail,teamLeaderPhone };
+        const teamPass = document.getElementById('team-pass').value;
+        const data = { teamName, teamLeaderName, teamLeaderEmail,teamPass };
         console.log(data)
 
         try {
@@ -66,17 +66,25 @@
                 },
                 body: JSON.stringify({
                     email: teamLeaderEmail,
-                    password: teamLeaderPhone, // Set a default password or generate one dynamically
+                    password: teamPass, // Set a default password or generate one dynamically
                     returnSecureToken: true
                 })
             });
 
-            // const res = await axios.post('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/user', {
-                
-            // })
-
+            
             const result = await response.json();
             console.log(result);
+
+            const res = await axios.post('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/user', {
+                teamLeaderEmail,
+                teamName,
+                teamLeaderName
+            }, {
+                headers:{
+                    Authorization: result.localId
+                }
+            })
+
 
             // Handle successful registration, e.g., store user data in Firebase Firestore or Realtime Database
         } catch (error) {

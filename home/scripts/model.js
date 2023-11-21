@@ -1,12 +1,3 @@
-let locIndex
-if(localStorage.getItem('locIndex') === null || localStorage.getItem('locIndex') === undefined || localStorage.getItem('locIndex') === ""){
-  locIndex = 0
-  localStorage.setItem('locIndex', locIndex)
-}else{
-  locIndex = parseInt(localStorage.getItem('locIndex'))
-}
-
-
 AFRAME.registerComponent('mycomponent', {
     init: function () {
       this.el.addEventListener('click', this.handleTouchStart.bind(this));
