@@ -60,7 +60,30 @@ centerBtn.addEventListener('click', () => {
     }
 })
 
+async function checkAllUsers(){
+    const res = await axios.get('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/user')
+    const allUsers = res.data.result
+    allUsers.map(user => {
+        if(user.winner){
+            window.alert(`Oops! You are a bit late :(`)
+            return false
+        }
+    })
+    await axios.post('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/user', {}, {
+        headers: {
+            Authorization: localStorage.getItem('uid')
+        }
+    })
+    return true
+}
+
 captureBtn.addEventListener('click', () => {
+    const winner = checkAllUsers()
+    if(winner){
+        const winnerBox = document.getElementById('winnerBox')
+        winnerBox.classList.add('block')
+        winnerBox.classList.remove('hidden')
+    }
     captureBtn.classList.add('hidden')
     captureBtn.classList.remove('block')
 })
