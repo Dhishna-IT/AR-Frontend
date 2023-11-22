@@ -31,7 +31,7 @@ couponCodeMap = {
 
 const fetchQuestions = async() => {
     try {
-        const res = await axios.get('http://arbackend-env-1.eba-kycbnrsm.us-east-1.elasticbeanstalk.com/api/v1/question')
+        const res = await axios.get('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/question')
         questionsSet = res.data.result
     } catch (error) {
         console.log(error)
@@ -90,7 +90,7 @@ enterCode.addEventListener('click', () => {
     }
 
     if(type == 'coupon'){
-        axios.get('http://arbackend-env-1.eba-kycbnrsm.us-east-1.elasticbeanstalk.com/api/v1/coupon')
+        axios.get('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/coupon')
             .then(res => {
                 coupons = res.data.result
                 if ((code === '14449' || code == '16901' || code == '11219' || code == '13632' || code == '15958' || code == '17826' || '165123' || '19673' || '16882' || '17395') && coupons.includes(couponCodeMap[code])) {
@@ -100,7 +100,7 @@ enterCode.addEventListener('click', () => {
                     couponBox.classList.remove('hidden')
                     couponBox.classList.add('block')
 
-                    axios.delete(`http://arbackend-env-1.eba-kycbnrsm.us-east-1.elasticbeanstalk.com/api/v1/coupon/${couponCodeMap[code]}`, {
+                    axios.delete(`https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/coupon/${couponCodeMap[code]}`, {
                         headers:{
                             Authorization: localStorage.getItem('uid')
                         }
@@ -116,7 +116,7 @@ enterCode.addEventListener('click', () => {
 opt1.addEventListener('click', async() => {
     if(opt1.innerText == questionSet.ans){
         const time = new Date()
-        await axios.post('http://arbackend-env-1.eba-kycbnrsm.us-east-1.elasticbeanstalk.com/api/v1/level', {timestamp: time}, {
+        await axios.post('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/level', {timestamp: time}, {
             headers:{
                 Authorization: localStorage.getItem('uid')
             }
@@ -140,7 +140,7 @@ opt1.addEventListener('click', async() => {
 opt2.addEventListener('click', async() => {
     if(opt2.innerText == questionSet.ans){
         const time = new Date()
-        await axios.post('http://arbackend-env-1.eba-kycbnrsm.us-east-1.elasticbeanstalk.com/api/v1/level', {timestamp: time}, {
+        await axios.post('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/level', {timestamp: time}, {
             headers:{
                 Authorization: localStorage.getItem('uid')
             }
@@ -164,7 +164,7 @@ opt2.addEventListener('click', async() => {
 opt3.addEventListener('click', async() => {
     if(opt3.innerText == questionSet.ans){
         const time = new Date()
-        await axios.post('http://arbackend-env-1.eba-kycbnrsm.us-east-1.elasticbeanstalk.com/api/v1/level', {timestamp: time}, {
+        await axios.post('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/level', {timestamp: time}, {
             headers:{
                 Authorization: localStorage.getItem('uid')
             }
@@ -188,7 +188,7 @@ opt3.addEventListener('click', async() => {
 opt4.addEventListener('click', async() => {
     if(opt4.innerText == questionSet.ans){
         const time = new Date()
-        await axios.post('http://arbackend-env-1.eba-kycbnrsm.us-east-1.elasticbeanstalk.com/api/v1/level', {timestamp: time}, {
+        await axios.post('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/level', {timestamp: time}, {
             headers:{
                 Authorization: localStorage.getItem('uid')
             }

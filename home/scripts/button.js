@@ -59,7 +59,7 @@ centerBtn.addEventListener('click', () => {
 })
 
 async function checkAllUsers(){
-    const res = await axios.get('http://arbackend-env-1.eba-kycbnrsm.us-east-1.elasticbeanstalk.com/api/v1/user')
+    const res = await axios.get('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/user')
     const allUsers = res.data.result
     allUsers.map(user => {
         if(user.winner){
@@ -67,7 +67,7 @@ async function checkAllUsers(){
             return false
         }
     })
-    await axios.post('http://arbackend-env-1.eba-kycbnrsm.us-east-1.elasticbeanstalk.com/api/v1/user', {}, {
+    await axios.post('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/user', {}, {
         headers: {
             Authorization: localStorage.getItem('uid')
         }

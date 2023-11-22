@@ -45,7 +45,7 @@ function loginFirebase(e) {
 
         window.location.replace("/page3/index.html");
         await axios.post(
-          "http://arbackend-env-1.eba-kycbnrsm.us-east-1.elasticbeanstalk.com/api/v1/login",
+          "https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/login",
           { name: user.email },
           { headers }
         );

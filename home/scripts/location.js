@@ -91,7 +91,7 @@ function handleLocationError(error) {
 }
 
 // Fetch location data from the API
-fetch('http://arbackend-env-1.eba-kycbnrsm.us-east-1.elasticbeanstalk.com/api/v1/location')
+fetch('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/location')
   .then(response => response.json())
   .then(locationData => {
     locations = locationData.locations; // Assuming the API response contains locations data
