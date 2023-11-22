@@ -16,7 +16,7 @@ if(localStorage.getItem('qid') === null || localStorage.getItem('qid') === undef
 
 async function fetchUserDetails(){
     try {
-        const res = await axios.get(`https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/user/${localStorage.getItem('uid')}`)
+        const res = await axios.get(`http://arbackend-env-1.eba-kycbnrsm.us-east-1.elasticbeanstalk.com/api/v1/user/${localStorage.getItem('uid')}`)
         console.log(res)
         localStorage.setItem('userDetails', JSON.stringify(res.data.result))
     } catch (error) {

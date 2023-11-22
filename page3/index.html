@@ -87,7 +87,7 @@
 
         function fetchClue() {
             document.getElementById('heading').innerText = 'Clue'
-            axios.get('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/clue')
+            axios.get('http://arbackend-env-1.eba-kycbnrsm.us-east-1.elasticbeanstalk.com/api/v1/clue')
                 .then(res => {
                     console.log(res)
                     // Assuming the data structure is {"success":1,"result":[{"clue":"...", "hint":"..."}]}
