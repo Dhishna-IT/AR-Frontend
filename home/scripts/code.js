@@ -115,7 +115,6 @@ enterCode.addEventListener('click', () => {
 
 opt1.addEventListener('click', async() => {
     if(opt1.innerText == questionSet.ans){
-        console.log('correct answer')
         const time = new Date()
         await axios.post('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/level', {timestamp: time}, {
             headers:{
@@ -140,7 +139,6 @@ opt1.addEventListener('click', async() => {
 
 opt2.addEventListener('click', async() => {
     if(opt2.innerText == questionSet.ans){
-        console.log('correct answer')
         const time = new Date()
         await axios.post('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/level', {timestamp: time}, {
             headers:{
@@ -156,7 +154,7 @@ opt2.addEventListener('click', async() => {
         
         displayQuestion()
     }
-    parseInt(localStorage.getItem('qid'))
+    qid = parseInt(localStorage.getItem('qid'))
     qid += 1
     localStorage.setItem('qid', qid)
     questionSet = questionsSet[qid]
@@ -165,7 +163,6 @@ opt2.addEventListener('click', async() => {
 
 opt3.addEventListener('click', async() => {
     if(opt3.innerText == questionSet.ans){
-        console.log('correct answer')
         const time = new Date()
         await axios.post('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/level', {timestamp: time}, {
             headers:{
@@ -181,7 +178,7 @@ opt3.addEventListener('click', async() => {
         
         displayQuestion()
     }
-    parseInt(localStorage.getItem('qid'))
+    qid = parseInt(localStorage.getItem('qid'))
     qid += 1
     localStorage.setItem('qid', qid)
     questionSet = questionsSet[qid]
@@ -190,7 +187,6 @@ opt3.addEventListener('click', async() => {
 
 opt4.addEventListener('click', async() => {
     if(opt4.innerText == questionSet.ans){
-        console.log('correct answer')
         const time = new Date()
         await axios.post('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/level', {timestamp: time}, {
             headers:{
@@ -206,7 +202,7 @@ opt4.addEventListener('click', async() => {
         
         displayQuestion()
     }
-    parseInt(localStorage.getItem('qid'))
+    qid = parseInt(localStorage.getItem('qid'))
     qid += 1
     localStorage.setItem('qid', qid)
     questionSet = questionsSet[qid]
