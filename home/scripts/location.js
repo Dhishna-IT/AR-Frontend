@@ -39,7 +39,7 @@ function handleLocationUpdate(position) {
 //   console.log("the user location",userLatt,userLong);
 
   if (locIndex !== -1) {
-    const thresholdDistance = 0.1; // Set your desired threshold distance
+    const thresholdDistance = 200; // Set your desired threshold distance
     const isNearLocation = isUserNearLocation(
       userLatt,
       userLong,
