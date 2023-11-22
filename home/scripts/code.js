@@ -127,13 +127,12 @@ opt1.addEventListener('click', async() => {
         window.location.replace('/page3/index.html')
     }else{
         window.alert('You clicked the wrong option! Please try another question')
-        
-        displayQuestion()
     }
     qid = parseInt(localStorage.getItem('qid'))
     qid += 1
     localStorage.setItem('qid', qid)
     questionSet = questionsSet[qid]
+    displayQuestion()
 }
 )
 
@@ -151,13 +150,12 @@ opt2.addEventListener('click', async() => {
         window.location.replace('/page3/index.html')
     }else{
         window.alert('You clicked the wrong option! Please try another question')
-        
-        displayQuestion()
     }
     qid = parseInt(localStorage.getItem('qid'))
     qid += 1
     localStorage.setItem('qid', qid)
     questionSet = questionsSet[qid]
+    displayQuestion()
 }
 )
 
@@ -175,13 +173,12 @@ opt3.addEventListener('click', async() => {
         window.location.replace('/page3/index.html')
     }else{
         window.alert('You clicked the wrong option! Please try another question')
-        
-        displayQuestion()
     }
     qid = parseInt(localStorage.getItem('qid'))
     qid += 1
     localStorage.setItem('qid', qid)
     questionSet = questionsSet[qid]
+    displayQuestion()
 }
 )
 
@@ -199,12 +196,11 @@ opt4.addEventListener('click', async() => {
         window.location.replace('/page3/index.html')
     }else{
         window.alert('You clicked the wrong option! Please try another question')
-        
-        displayQuestion()
     }
     qid = parseInt(localStorage.getItem('qid'))
     qid += 1
     localStorage.setItem('qid', qid)
     questionSet = questionsSet[qid]
+    displayQuestion()
 }
 )
