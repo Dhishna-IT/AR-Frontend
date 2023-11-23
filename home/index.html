@@ -72,7 +72,7 @@
         <a-scene
           device-orientation-permission-ui="enabled: false"
           vr-mode-ui="enabled: false"
-          arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
+          arjs="trackingMethod: best ;sourceType: webcam; videoTexture: true; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
           renderer="antialias: true; alpha: true"
           >
           <video
@@ -109,12 +109,33 @@
             position="0 0.1 0"
             look-controls-enabled="false"
             arjs-look-controls="smoothingFactor: 0.1"
+
           ></a-camera>
-          <a-marker preset="hiro">
+
+          <a-nft
+          type="nft"
+          url="./assets/marker"
+          smooth="true"
+          smoothCount="10"
+          smoothTolerance=".01"
+          smoothThreshold="5"
+        >
+
+        <a-entity
+        gltf-model="./assets/foodcoupon1.glb"
+        scale="5 5 5"
+        position="50 150 0"
+      >
+      </a-entity>
+
+    </a-nft>
+
+
+          <!-- <a-marker preset="hiro">
               <a-entity
               gltf-model="3dAssets/foodcoupon1.glb"
             ></a-entity>
-          </a-marker>
+          </a-marker> -->
           <!-- <a-entity
             id="gltfModel"
             gltf-model=""

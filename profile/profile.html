@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <title>GeoQuest-login</title>
+        <link rel="stylesheet" href="../output.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Text:wght@600&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Avenir:wght@400;500;800&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700&display=swap">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.1/axios.min.js" integrity="sha512-m9S8W3a9hhBHPFAbEIaG7J9P92dzcAWwM42VvJp5n1/M599ldK6Z2st2SfJGsX0QR4LfCVr681vyU5vW8d218w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script type="module" src="firebase.mjs"></script>
+</head>
+<body>
+<div class="full-body">
+    <div class="rounded-[1.125rem] bg-[#111] text-center text-[0.94rem] text-[#fff] font-SFProText min-h-screen flex flex-col justify-center w-full ">
+        <div class="font-headline-20px !px-10  bg-white bg-opacity-5 rounded-xl border border-white max-w-2xl w-[50%] px-10 py-10">
+            <!-- <img class="max-w-full h-auto mx-auto mt-28" src="assets/logo-no-background 1.png" alt="image"> -->
+            <p class="text-2xl leading-7 text-center mt-6">PROFILE</p>
+            <div class="!px-20">
+                <div>
+                    <label class="text-white font-inter block py-2.5 font-medium text-base md:text-lg leading-7 md:leading-8 text-left" for="team-name">Team Name:</label>
+                    <div id="team-name" class="text-white m-4 p-8 box-border bg-glass01 border border-border02 rounded-xl">Team A</div>
+                </div>
+                <div>
+                    <label class="text-white font-inter block py-2.5 font-medium text-base md:text-lg leading-7 md:leading-8 text-left" for="team-leader">Team Leader:</label>
+                    <div id="team-leader" class="text-white m-4 p-4 box-border bg-glass01 border border-border02 rounded-xl">John Doe</div>
+                </div>
+                <div>
+                    <label class="text-white font-inter block py-2.5 font-medium text-base md:text-lg leading-7 md:leading-8 text-left" for="email">Email:</label>
+                    <div id="email" class="text-white m-4 p-[30px] box-border bg-glass01 border border-border02 rounded-xl">john.doe@example.com</div>
+                </div>
+                <div>
+                    <label class="text-white font-inter block py-2.5 font-medium text-base md:text-lg leading-7 md:leading-8 text-left" for="level">Level:</label>
+                    <div id="level" class="text-white m-4 p-4 box-border bg-glass01 border border-border02 rounded-xl">5</div>
+                </div>
+                <div>
+                    <label class="text-white font-inter block py-2.5 font-medium text-base md:text-lg leading-7 md:leading-8 text-left" for="coupons-collected">Coupons Collected:</label>
+                    <div id="coupons-collected" class="text-white m-4 px- box-border bg-glass01 border border-border02 rounded-xl">10</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
