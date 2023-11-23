@@ -1,5 +1,9 @@
 const cameraBtn = document.getElementById("cameraBtn");
 
 cameraBtn.addEventListener("click", () => {
-    window.location.replace('/home/index.html')
+    if(localStorage.getItem('story') == 'completed'){
+        window.location.replace('/home/index.html')
+    }else{
+        window.alert('Please complete the story first!')
+    }
 })
