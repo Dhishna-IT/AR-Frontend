@@ -111,6 +111,14 @@
             arjs-look-controls="smoothingFactor: 0.1"
 
           ></a-camera>
+          <a-entity
+            id="gltfModel"
+            gltf-model=""
+            gps-new-entity-place=""
+            scale="1 1 1"
+            mycomponent
+            class="z-10 "
+          ></a-entity>
         </a-scene>
       </div>
     </div>
@@ -118,7 +126,7 @@
 
     <!-- Winner Scene  -->
     <div class="absolute z-2 hidden" id="winnerScene">
-      <video id="winnerVideo"></video>
+      <video autoplay id="winnerVideo"></video>
     </div>
     <!-- Winner Scene  -->
 

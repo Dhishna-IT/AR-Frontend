@@ -67,17 +67,18 @@ async function checkAllUsers(){
             return false
         }
     })
-    await axios.post('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/user', {}, {
+    const res2 = await axios.post('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/winner', {}, {
         headers: {
             Authorization: localStorage.getItem('uid')
         }
     })
+    console.log(res2)
     return true
 }
 
 captureBtn.addEventListener('click', () => {
     const winner = checkAllUsers()
-    if(winner){
+    if(winner == true){
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices
             .getUserMedia({ video: {facingMode: 'environment'} })
@@ -107,9 +108,9 @@ captureBtn.addEventListener('click', () => {
         winnerScene.classList.add('block')
         const winnerVideo = document.getElementById("winnerVideo");
         winnerVideo.src = '3dAssets/winner.mp4'
+        captureBtn.classList.add('hidden')
+        captureBtn.classList.remove('block')
     }
-    captureBtn.classList.add('hidden')
-    captureBtn.classList.remove('block')
 })
 
 openInput.addEventListener('click', () => {
