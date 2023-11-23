@@ -78,9 +78,35 @@ async function checkAllUsers(){
 captureBtn.addEventListener('click', () => {
     const winner = checkAllUsers()
     if(winner){
-        const winnerBox = document.getElementById('winnerBox')
-        winnerBox.classList.add('block')
-        winnerBox.classList.remove('hidden')
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices
+            .getUserMedia({ video: {facingMode: 'environment'} })
+            .then(function (stream) { 
+                stream.getTracks().forEach(track => console.log(track))
+                stream.getTracks()
+                .forEach(track => track.stop());
+                video.srcObject = null;
+                cameraStream = null;
+                document.getElementsByTagName('video')[1].style.display = 'none'
+                cameraScene.style.display = 'none'
+                cameraScene.classList.add('hidden')
+                cameraScene.classList.remove('block')
+            })
+            .catch(function (error) {
+                console.error("Error accessing camera:", error);
+            });
+        } else {
+            console.error("getUserMedia is not supported in this browser.");
+        }
+        
+        mapScene.style.display = 'none'
+        mapScene.classList.add('hidden')
+        mapScene.classList.remove('block')
+        const winnerScene = document.getElementById('winnerScene')
+        winnerScene.classList.remove('hidden')
+        winnerScene.classList.add('block')
+        const winnerVideo = document.getElementById("winnerVideo");
+        winnerVideo.src = '3dAssets/winner.mp4'
     }
     captureBtn.classList.add('hidden')
     captureBtn.classList.remove('block')
