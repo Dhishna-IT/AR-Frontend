@@ -72,7 +72,7 @@
         <a-scene
           device-orientation-permission-ui="enabled: false"
           vr-mode-ui="enabled: false"
-          arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false"
+          arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
           renderer="antialias: true; alpha: true"
           >
           <video
@@ -110,7 +110,12 @@
             look-controls-enabled="false"
             arjs-look-controls="smoothingFactor: 0.1"
           ></a-camera>
-          <a-entity
+          <a-marker preset="hiro">
+              <a-entity
+              gltf-model="3dAssets/foodcoupon1.glb"
+            ></a-entity>
+          </a-marker>
+          <!-- <a-entity
             id="gltfModel"
             gltf-model=""
             gps-new-entity-place=""
@@ -197,7 +202,7 @@
             scale="1 1 1"
             mycomponent
             class="z-10 "
-          ></a-entity>
+          ></a-entity> -->
         </a-scene>
       </div>
     </div>
