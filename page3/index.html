@@ -9,14 +9,12 @@
     <script src="../../scripts/init.js"></script>
 </head>
 <body class="h-screen bg-black">
-    <div class="h-4 mt-6 relative w-auto rounded-full overflow-hidden">
-        <div class="w-full h-full bg-gray-200 absolute"></div>
-        <div class="h-full bg-orange-500 absolute" style="width:30%"></div>
-    </div>
-
-    <div class="mt-8 p-8 ml-2 mr-2 border-4 border-amber-100 h-auto rounded-lg shadow-md text-white">
-        <h1 id="heading" class="text-3xl font-bold mb-4 text-orange-500">The Story Title</h1>
-        <div id="paragraph1" class="story-paragraph hidden">
+    <div class="mt-8 p-8 ml-2 mr-2 border-4 border-amber-100 rounded-lg shadow-md text-white h-auto">
+        <div class="flex flex-row justify-center items-center gap-10">
+            <h1 id="heading" class="text-3xl font-bold mb-4 text-orange-500">Emogaurdians</h1>
+            <button onclick="nextParagraph()" class=" bg-orange-500 text-white font-semibold px-4 py-2 rounded text-center" id="next">Next</button>
+        </div>
+        <div id="paragraph1" class="story-paragraph hidden py-5">
             <p class="text-lg">Objective: The players (participants) are divided into teams, and their mission is to help savethe fictional students from mental health issues by progressing through various stages ofhealing. The teams will need to solve clues and overcome challenges at each location toacquire secret weapons (symbolic representations of mental health coping mechanisms). Thegame culminates in a final showdown where the teams assemble their collected powers tobattle the mental health demons and determine the winner.</p>
         </div>
         <div id="paragraph2" class="story-paragraph hidden">
@@ -35,10 +33,7 @@
             <p class="text-lg">These artefacts are to betreasured for the rest of your lives as they would always come in handy when the mindmonsters attack again.Your mission is to restore hope to those trapped in the mindlands and destroy the demons thatcaused it. Each step makes you stronger and closer to defeating them, and also save thosetrapped in their own minds. Goodbye Forger! </p>
         </div>
         <div id="clue" class="story-paragraph hidden">
-            <!-- Clue will be displayed here -->
         </div>
-        <!-- Add more content as needed -->
-        <button onclick="nextParagraph()" class="mt-4 bg-orange-500 text-black px-4 py-2 rounded" id="next">Next</button>
     </div>
 
     <div class="h-[10%]  mb-0 w-screen">
@@ -60,7 +55,6 @@
     <script>
 
         if (localStorage.getItem('story') === 'completed') {
-            // If story is completed, fetch and display the clue
             fetchClue();
         } else {
             const firstParagraph = document.getElementById('paragraph1');
@@ -80,7 +74,6 @@
                 }
             } else {
                 localStorage.setItem('story', 'completed')
-                // If no more paragraphs, fetch and display the clue
                 fetchClue();
             }
         }
@@ -90,15 +83,12 @@
             axios.get('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/clue')
                 .then(res => {
                     console.log(res)
-                    // Assuming the data structure is {"success":1,"result":[{"clue":"...", "hint":"..."}]}
                     if (res.data.success === 1) {
 
                         let locIndex = localStorage.getItem('locIndex')
                         locIndex = parseInt(locIndex);
                         const clue = res.data.result[locIndex].clue;
 
-                      
-                        // Display only the clue, hide other paragraphs
                         hideParagraphs();
                         displayClue(clue);
                     }else{
@@ -111,7 +101,7 @@
         }
 
         function hideParagraphs() {
-            // Hide all story paragraphs
+
             for (let i = 1; i <= 6; i++) {
                 const paragraph = document.getElementById( `paragraph${i}`);
                 if (paragraph) {
@@ -121,8 +111,6 @@
         }
 
         function displayClue(clue) {
-            // Display the clue in the same div
-            // Display the clue in the same div
             const clueContainer = document.getElementById('clue');
             if(clue.includes('iV')){
                 clueContainer.innerHTML = `<img src='data:image/jpeg;base64,${clue}'' />`
