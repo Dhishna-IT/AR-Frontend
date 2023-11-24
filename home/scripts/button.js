@@ -2,12 +2,17 @@ const centerBtn = document.getElementById('centerBtn')
 const cameraScene = document.getElementById('cameraScene')
 const mapScene = document.getElementById('mapScene')
 const storyBtn = document.getElementById('storyBtn')
+const profileBtn = document.getElementById('profileBtn')
 const openInput = document.getElementById('openInput')
 const captureBtn = document.getElementById('captureBtn')
 const centerImg = document.getElementById('centerImg')
 
 storyBtn.addEventListener('click', () => {
     window.location.replace('/page3/index.html')
+})
+
+profileBtn.addEventListener('click', () => {
+    window.location.replace('../../profile/index.html')
 })
 
 centerBtn.addEventListener('click', () => {
