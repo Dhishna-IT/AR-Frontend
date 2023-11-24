@@ -61,23 +61,27 @@ centerBtn.addEventListener('click', () => {
 async function checkAllUsers(){
     const res = await axios.get('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/user')
     const allUsers = res.data.result
+    let shouldMakeSecondCall = true
     allUsers.map(user => {
         if(user.winner){
             window.alert(`Oops! You are a bit late :(`)
+            shouldMakeSecondCall = false
             return false
         }
     })
-    const res2 = await axios.post('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/winner', {}, {
-        headers: {
-            Authorization: localStorage.getItem('uid')
-        }
-    })
-    console.log(res2)
-    return true
+    if(shouldMakeSecondCall == true){
+        const res2 = await axios.post('https://ar-backend-7a3f65dd5c44.herokuapp.com/api/v1/winner', {}, {
+            headers: {
+                Authorization: localStorage.getItem('uid')
+            }
+        })
+        return true
+    }
 }
 
-captureBtn.addEventListener('click', () => {
-    const winner = checkAllUsers()
+captureBtn.addEventListener('click', async() => {
+    const winner = await checkAllUsers()
+    console.log(winner)
     if(winner == true){
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices
@@ -100,6 +104,9 @@ captureBtn.addEventListener('click', () => {
             console.error("getUserMedia is not supported in this browser.");
         }
         
+        cameraScene.style.display = 'none'
+        cameraScene.classList.add('hidden')
+        cameraScene.classList.remove('block')
         mapScene.style.display = 'none'
         mapScene.classList.add('hidden')
         mapScene.classList.remove('block')

@@ -213,47 +213,40 @@
     <!-- Question Box  -->
     <div
     id="questionBox"
-    class="w-11/12 bg-[#1E1E1E] text-white rounded-lg absolute z-10 left-5 top-[20vh] question-container hidden"
+    class="w-11/12 bg-[#1E1E1E] text-white rounded-lg absolute z-10 left-5 top-[17vh] question-container hidden"
     >
-      <div class="flex flex-row items-start gap-2 p-5 border-b-2">
-        <h1 class="w-3/4">Question 1</h1>
-        <div>
-          <img src="close-icon.svg" alt="" />
-        </div>
+      <div class="flex flex-row items-start gap-2 p-5">
+        <h1 class="w-3/4">Question <span id="questionNo"></span></h1>
       </div>
       <div class="flex py-6 px-3">
-        <p id="questionText">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Pellentesque et odio sed est pellentesque gravida sit amet at orci.
-          Phasellus eget iaculis tortor,
-        </p>
+        <p id="questionText" style="font-size: 20px">How can practicing active listening positively impact your relationships and mental well-being?</p>
       </div>
       <div
-          class="border-t-2 border grid grid-cols-1 w-full h-full md:p-5 p-3 py-5 justify-items-center justify-center items-center content-center gap-4 flex-wrap bg-[rgba(255, 255, 255, 0.05)]"
+          class="grid grid-cols-1 w-full h-full md:p-5 p-3 py-5 justify-items-center justify-center items-center content-center gap-4 flex-wrap bg-[rgba(255, 255, 255, 0.05)]"
           >
           <button
           id="opt1"
-            class="flex rounded-lg border border-solid border-[#FFF] bg-gradient-to-r from-orange-500 to-red-500 backdrop-blur-[5px] w-36 h-12 p-4 justify-center items-center flex-shrink-0 text-white font-inter font-semibold w-full"
+            class="flex rounded-lg bg-gradient-to-r bg-[#E65728] backdrop-blur-[5px] w-36 h-12 py-10 px-3 justify-center items-center flex-shrink-0 text-white font-inter font-semibold w-full"
           >
-          Option 1
+          it helps you be popular as you are a good listener
         </button>
         <button
         id="opt2"
-        class="flex rounded-lg border border-solid border-[#FFF] bg-gradient-to-r from-orange-500 to-red-500 backdrop-blur-[5px] w-36 h-12 p-4 justify-center items-center flex-shrink-0 text-white font-inter font-semibold w-full"
+        class="flex rounded-lg bg-gradient-to-r bg-[#E65728] backdrop-blur-[5px] w-36 h-12 py-10 px-3 justify-center items-center flex-shrink-0 text-white font-inter font-semibold w-full"
         >
-        Option 2
+        It encourages effective communication and empathy
         </button>
           <button
           id="opt3"
-          class="flex rounded-lg border border-solid border-[#FFF] bg-gradient-to-r from-orange-500 to-red-500 backdrop-blur-[5px] w-36 h-12 p-4 justify-center items-center flex-shrink-0 text-white font-inter font-semibold w-full"
+          class="flex rounded-lg bg-gradient-to-r bg-[#E65728] backdrop-blur-[5px] w-36 h-12 py-10 px-3 justify-center items-center flex-shrink-0 text-white font-inter font-semibold w-full"
           >
-          Option 3
+          It makes people come to you to seek advice, thus increasing your self-esteem
         </button>
         <button
         id="opt4"
-        class="flex rounded-lg border border-solid border-[#FFF] bg-gradient-to-r from-orange-500 to-red-500 backdrop-blur-[5px] w-36 h-12 p-4 justify-center items-center flex-shrink-0 text-white font-inter font-semibold w-full"
+        class="flex rounded-lg bg-gradient-to-r bg-[#E65728] backdrop-blur-[5px] w-36 h-12 py-10 px-3 justify-center items-center flex-shrink-0 text-white font-inter font-semibold w-full"
         >
-        Option 4
+        It encourages people to befriend you and helps you socialise more
         </button>
       </div>
     </div>
@@ -261,7 +254,7 @@
 
 
     <!-- Map Scene  -->
-    <div id="mapScene" class="container h-5/6">
+    <div id="mapScene" class="container h-full absolute z-0">
       <div id="map" class="w-full h-full"></div>
     </div>
     <!-- Map Scene  -->

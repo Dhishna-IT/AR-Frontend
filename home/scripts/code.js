@@ -42,6 +42,8 @@ fetchQuestions()
 
 function displayQuestion(){
     qid = parseInt(localStorage.getItem('qid'))
+    const questionNo = document.getElementById('questionNo')
+    questionNo.innerHTML = `${qid+1}`
     if(qid == 30){
         qid = 0
     }

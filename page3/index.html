@@ -42,10 +42,10 @@
             <div id="cameraBtn">
                 <img src="../assets/camera.png" alt="camera" class="w-11 my-4 absolute bottom-0 left-[4vw]">
             </div>
-            <div>
+            <div id="mapBtn">
                 <img src="../assets/map.png" alt="map" class="w-11 absolute bottom-0 my-5 right-[4vw]">
             </div>
-            <div id="cameraBtn" class="flex justify-center">
+            <div class="flex justify-center">
                 <img src="../assets/story-float.png" alt="btn" class="w-[4.5rem] my-4 absolute bottom-3">
             </div>
         </div>
@@ -74,8 +74,8 @@
                 }
             } else {
                 localStorage.setItem('story', 'completed')
-                // fetchClue();
                 hideParagraphs()
+                document.getElementById('heading').innerText = 'Clue'
                 displayClue("Seek the realm where young minds thrive, In Cusat's bounds, knowledge comes alive. A place of wonders, where science is king, Where labs and parks make learning sing.  Look for the key where space's secrets unfold, Amongst statues tall and models bold. The treasure's hidden, close at hand, Solve the puzzle, fulfill your plan.  Let curiosity be your guide, To find the prize, let wisdom be your stride. Where students play and knowledge gleams, Unlock the secret, fulfill your dreams")
             }
         }
