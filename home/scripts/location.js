@@ -43,16 +43,16 @@ function handleLocationUpdate(position) {
     const isNearLocation = isUserNearLocation(
       userLatt,
       userLong,
-      userLatt,
-      userLong,
+      locations[locIndex].x1,
+      locations[locIndex].x2,
       thresholdDistance
     );
 
     // console.log(typeof(locations[locIndex].x1),typeof(locations[locIndex].x2),"tpyeee emf lsngjkn ")
     // 10.046942288501658,76.3351997254754
     if (isNearLocation) {
-      const newLatitude = userLatt;
-      const newLongitude = userLong;
+      const newLatitude = locations[locIndex].x1;
+      const newLongitude = locations[locIndex].x2;
       const modelElement = document.getElementById('gltfModel');
       if(locIndex == 6){
         const captureBtn = document.getElementById('captureBtn')
